@@ -10,11 +10,13 @@ Site sobre alimentação saudável desenvolvido em **HTML e CSS puro** (sem fram
 index.html                  ← Página inicial (Home — estado público/não logado)
 home-logada.html            ← Página inicial logada (pós-criação de perfil)
 perfil.html                 ← Tela "Meu Perfil" (criação de conta)
+receitas.html               ← Tela "Receitas" (grade de receitas com filtros)
 css/
   styles.css                ← Estilos base (paleta, tipografia, header, footer, cards)
   questionario.css          ← Estilos do questionário (layout 2 colunas, cards de opção, barra de progresso)
   perfil.css                ← Estilos da tela de perfil (card central, campos com ícones, botão submit)
   home-logada.css           ← Estilos da home logada (banner sucesso, cards receita/artigo, atalhos)
+  receitas.css              ← Estilos da tela de receitas (hero, filtros pill, grade de cards)
 questionario/
   passo-1.html              ← Passo 1/3: Hábitos alimentares
   passo-2.html              ← Passo 2/3: Objetivo com alimentação saudável
@@ -128,7 +130,40 @@ Abra `perfil.html` diretamente no navegador, ou clique em **Finalizar** no últi
 
 ---
 
-## Tecnologias
+## Tela "Receitas" (`receitas.html`) — como acessar localmente
+
+Abra `receitas.html` diretamente no navegador, ou navegue pelo fluxo completo:
+
+```
+index.html → questionario → perfil.html → home-logada.html → Todas Receitas (atalho)
+```
+
+O item **"Receitas"** no menu de navegação de todas as páginas também leva a essa tela.
+
+### Decisões de acessibilidade
+
+| Elemento / Técnica | Motivo |
+|---|---|
+| `aria-current="page"` no item "Receitas" do menu | Comunica a página ativa a tecnologias assistivas sem depender apenas do estilo visual (cor ou negrito). Usuários de leitor de tela que navegam pelos links do menu precisam de sinalização programática para saber onde estão |
+| `<label for="busca-receitas" class="sr-only">` | Associação explícita label→input obrigatória pela WCAG 1.3.1 e 4.1.2. Visualmente oculto via `.sr-only`, mas presente na árvore de acessibilidade — o leitor de tela anuncia "Buscar receitas" ao focar o campo, o que não é garantido com `placeholder` sozinho |
+| `<select>` nativo para categorias | Acessível nativamente: funciona com teclado (setas, Enter, Esc), anunciado por todos os leitores de tela sem ARIA adicional, e abre o seletor nativo do SO em mobile. Um dropdown customizado com `<div>` exigiria `role="listbox"`, `role="option"`, `aria-expanded`, `aria-activedescendant` e gerenciamento de foco via JS para atingir o mesmo nível de acessibilidade |
+| `<button type="button">` com `aria-pressed` para filtros pill | Os filtros são alternáveis (toggle) — cada um pode estar ativo ou inativo. `aria-pressed="true/false"` comunica esse estado a leitores de tela sem depender apenas da cor verde, que seria inacessível para usuários com daltonismo ou em modo de alto contraste |
+| CSS usa tanto `.pill[aria-pressed="true"]` quanto `.pill--ativo` | Robustez: se JS não atualizar `aria-pressed`, a classe visual ainda funciona; se a classe for removida, o estilo baseado em atributo ainda cobre o estado |
+| `<article>` para cada card de receita | Conteúdo autocontido: cada receita faz sentido por si mesma, desacoplada do contexto da página. Leitores de tela anunciam "artigo" ao entrar em cada card, contextualizando o tipo de conteúdo |
+| `aria-label` nos botões de favoritar com nome da receita | Sem o nome da receita, todos os botões soariam idênticos ("Favoritar") ao navegar por botões no NVDA (tecla B) ou VoiceOver, impossibilitando distinguir qual receita cada botão afeta |
+| `aria-pressed="false"` nos botões de favoritar (versão estática) | Mesmo sem JS, declarar `aria-pressed` comunica a intenção do controle (alternador de estado) e facilita a implementação futura. Ferramentas como axe verificam a presença do atributo em botões de toggle |
+| Ícones de metadados (⏱, 🍴) com `aria-hidden="true"` | Os emojis são DECORATIVOS: o texto adjacente ("30 min", "Fácil") já comunica a informação completa. `aria-hidden` evita que o leitor de tela verbalize "relógio" ou "garfo e faca", que seriam ruído sem agregar significado |
+| Imagens de receita com `alt` descritivo do prato | As imagens são INFORMATIVAS (apresentam o prato visualmente). O `alt` descreve o conteúdo real da foto, evitando redundância com o título da receita (h3) — ex: alt="Fatias de bolo de banana com casca dourada" em vez de alt="Bolo de banana sem açúcar" |
+| `loading="lazy"` nas imagens dos cards | Melhora o desempenho (Lighthouse) sem impacto em acessibilidade: imagens fora da viewport são carregadas só quando necessário |
+| Hierarquia de headings: `h1` → `h2` (sr-only) → `h3` | `h1`: "Receitas" (título da página); `h2` invisível: "Receitas disponíveis" (nomeia a seção para leitores de tela mantendo a hierarquia sem exibir redundância visual); `h3`: título de cada receita individual. Pular níveis seria apontado por axe/Lighthouse como erro |
+| `h2 .sr-only` "Busca e filtros de receitas" | Cria um landmark nomeado para a seção de filtros sem poluir o layout visual. Garante que a hierarquia h1 → h2 → h3 esteja íntegra — ferramentas verificam isso automaticamente |
+| `role="search"` no wrapper do campo de busca do header | Cria um landmark "área de pesquisa" reconhecido por leitores de tela, permitindo navegar diretamente para o campo de busca |
+| `:focus-visible` herdado de `styles.css` | Indicador de foco visível em todos os links, botões e campos ao navegar por teclado, sem poluir a interface para usuários de mouse |
+| Botão "Carregar Mais Receitas" sem aria-live | Nesta versão estática não há paginação real; quando JS for adicionado, o ideal é associar uma região `aria-live="polite"` que anuncie o número de novos cards carregados |
+
+---
+
+
 
 - HTML5 semântico
 - CSS3 (custom properties, grid, flexbox, `:focus-visible`, media queries)
