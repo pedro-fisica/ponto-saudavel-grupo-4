@@ -1,0 +1,35 @@
+/* Estilos globais da aplicação */
+
+/* Reset básico para remover espaçamentos padrão do navegador */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tipografia baseada em fontes do sistema — sem dependência de fontes externas */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 16px;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  line-height: 1.5;
+}
+
+/* Estilo de foco visível — importante para navegação por teclado (WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid #1e7d34;
+  outline-offset: 2px;
+}
+
+/* Garante que imagens não ultrapassem o contêiner pai */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Links sem decoração por padrão; decoração é adicionada nos componentes */
+a {
+  color: inherit;
+  text-decoration: none;
+}

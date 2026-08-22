@@ -1,0 +1,47 @@
+<!-- Seção de cards de funcionalidades -->
+<!-- <section> com aria-labelledby associa o título h2 à região, ajudando leitores de tela -->
+<section class="features" aria-labelledby="features-title">
+
+  <!-- h2 porque é um subtítulo da página — hierarquia: h1 (hero) → h2 (seção) → h3 (cards) -->
+  <h2 id="features-title" class="features-title">
+    Explore o que preparamos para você
+  </h2>
+
+  <!-- Lista de cards — <ul> é semanticamente correto para uma lista de itens equivalentes -->
+  <ul class="cards-grid" role="list">
+
+    <!-- Card Receitas -->
+    <li class="card">
+      <!-- aria-hidden nos ícones decorativos evita que leitores de tela os verbalizem -->
+      <div class="card-icon" aria-hidden="true">🍽️</div>
+      <!-- h3 porque está dentro de uma seção h2 -->
+      <h3 class="card-title">Receitas</h3>
+      <p class="card-desc">
+        Receitas práticas e saborosas para todas as refeições do seu dia a dia.
+      </p>
+      <a href="#" class="card-link">Ver receitas →</a>
+    </li>
+
+    <!-- Card Artigos -->
+    <li class="card">
+      <div class="card-icon" aria-hidden="true">📖</div>
+      <h3 class="card-title">Artigos</h3>
+      <p class="card-desc">
+        Conteúdos sobre saúde, nutrição e estilo de vida baseados em evidências.
+      </p>
+      <a href="#" class="card-link">Ler artigos →</a>
+    </li>
+
+    <!-- Card Seu Perfil -->
+    <li class="card">
+      <div class="card-icon" aria-hidden="true">👤</div>
+      <h3 class="card-title">Seu Perfil</h3>
+      <p class="card-desc">
+        Responda ao questionário e receba recomendações feitas para você.
+      </p>
+      <a href="#" class="card-link">Começar →</a>
+    </li>
+
+  </ul>
+
+</section>

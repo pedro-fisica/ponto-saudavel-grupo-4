@@ -1,0 +1,46 @@
+<!-- Seção de destaque (Hero) — <section> com aria-label descreve a região para leitores de tela -->
+<section class="hero" aria-label="Seção de destaque">
+  <div class="hero-inner">
+
+    <!-- Coluna de texto -->
+    <div class="hero-text">
+
+      <!-- Badge pequena — role="img" porque o emoji faz parte da semântica visual -->
+      <span class="badge">🌿 Nutrição Inteligente</span>
+
+      <!-- h1 é o título principal da página — deve haver apenas um h1 por página -->
+      <h1 class="hero-title">
+        Alimentação saudável para uma vida melhor
+      </h1>
+
+      <p class="hero-desc">
+        Receitas nutritivas, artigos confiáveis e recomendações personalizadas
+        para o seu bem-estar diário, sem complicação.
+      </p>
+
+      <!-- Botões de ação: o primário e o secundário ficam próximos para facilitar navegação por teclado -->
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Fazer meu questionário →</a>
+        <a href="#" class="btn-secondary">Ver receitas</a>
+      </div>
+
+    </div>
+
+    <!-- Coluna da imagem -->
+    <div class="hero-image-wrapper">
+      <!-- alt descritivo informa o conteúdo da imagem para quem não a vê -->
+      <img
+        src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop"
+        alt="Tigela colorida com salada de folhas verdes, tomate-cereja, abacate e grãos"
+        class="hero-img"
+        width="560"
+        height="420"
+      />
+
+      <!-- Badges flutuantes sobre a imagem — aria-hidden porque são apenas decorativas -->
+      <span class="float-badge top" aria-hidden="true">♥ Baseado em ciência</span>
+      <span class="float-badge bottom" aria-hidden="true">🍴 +500 Receitas</span>
+    </div>
+
+  </div>
+</section>

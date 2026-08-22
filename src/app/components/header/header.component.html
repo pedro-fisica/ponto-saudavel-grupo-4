@@ -1,0 +1,43 @@
+<!-- <header> é um elemento landmark — leitores de tela anunciam "cabeçalho" ao entrar nesta região -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <!-- Logo: imagem com alt descritivo para leitores de tela -->
+    <a href="/" class="logo" aria-label="Ponto Saudável — página inicial">
+      <img src="https://placehold.co/40x40/1e7d34/white?text=PS" alt="Logotipo Ponto Saudável" width="40" height="40">
+      <span>Ponto Saudável</span>
+    </a>
+
+    <!-- Indicador de localização — apenas texto informativo, sem interação -->
+    <div class="location" aria-label="Localização: São Paulo, SP">
+      <span aria-hidden="true">📍</span>
+      <span>São Paulo, SP</span>
+    </div>
+
+    <!-- Campo de busca: <label> associado ao <input> pelo atributo "for/id" (acessibilidade de formulário) -->
+    <div class="search-wrapper" role="search">
+      <label for="busca" class="sr-only">Buscar receitas e artigos</label>
+      <input
+        id="busca"
+        type="search"
+        placeholder="Buscar receitas, artigos..."
+        class="search-input"
+      />
+      <span class="search-icon" aria-hidden="true">🔍</span>
+    </div>
+
+    <!-- <nav> é um landmark de navegação; aria-label diferencia se houver mais de um <nav> na página -->
+    <nav aria-label="Menu principal">
+      <ul class="nav-list">
+        <li><a href="#">Questionário</a></li>
+        <li><a href="#">Receitas</a></li>
+        <li><a href="#">Artigos</a></li>
+        <li><a href="#">Meu Perfil</a></li>
+      </ul>
+    </nav>
+
+    <!-- Botão de ação primária -->
+    <button type="button" class="btn-entrar">Entrar</button>
+
+  </div>
+</header>

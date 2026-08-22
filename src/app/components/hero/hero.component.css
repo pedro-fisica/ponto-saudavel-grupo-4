@@ -1,0 +1,137 @@
+/* ===== Hero Section ===== */
+
+/* Fundo em tom lilás/cinza bem claro para diferenciar visualmente do restante */
+.hero {
+  background-color: #f5f4fb;
+  padding: 64px 24px;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+/* Coluna de texto ocupa metade do espaço */
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Badge de destaque */
+.badge {
+  display: inline-block;
+  background-color: #dcfce7;
+  color: #166128;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+/* Título principal */
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+/* Parágrafo descritivo */
+.hero-desc {
+  font-size: 1.1rem;
+  color: #4b5563;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* Grupo de botões lado a lado */
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Botão primário (verde sólido) */
+.btn-primary {
+  background-color: #1e7d34;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #166128;
+}
+
+/* Botão secundário (outline) */
+.btn-secondary {
+  border: 2px solid #1e7d34;
+  color: #1e7d34;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #1e7d34;
+  color: #ffffff;
+}
+
+/* Coluna da imagem com posição relativa para os badges flutuantes */
+.hero-image-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+/* Badges flutuantes sobre a imagem */
+.float-badge {
+  position: absolute;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.float-badge.top {
+  top: 16px;
+  right: 16px;
+}
+
+.float-badge.bottom {
+  bottom: 16px;
+  left: 16px;
+}
+
+/* Responsivo: em telas menores, empilha texto e imagem */
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+}
