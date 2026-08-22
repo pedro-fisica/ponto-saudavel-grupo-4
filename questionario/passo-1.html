@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Viewport garante responsividade em dispositivos móveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questionário — Passo 1 de 3 | Ponto Saudável</title>
+  <!-- Meta description ajuda motores de busca e contextualizadores de página -->
+  <meta name="description" content="Responda ao questionário e receba recomendações personalizadas de alimentação saudável. Passo 1 de 3." />
+  <!-- Estilos base da Home — reutilizamos a mesma paleta, tipografia e componentes -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <!-- Estilos específicos do questionário — componentes de layout de duas colunas, cards de opção e barra de progresso -->
+  <link rel="stylesheet" href="../css/questionario.css" />
+</head>
+<body>
+
+  <!-- =====================================================================
+       HEADER / NAVBAR
+       Mesmo header da Home para manter consistência de navegação.
+       aria-label="Menu principal" permite que leitores de tela
+       diferenciem este <nav> do rodapé.
+  ====================================================================== -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <!-- Logo com aria-label descritivo: torna o destino claro ao
+           navegar por links em um leitor de tela. -->
+      <a href="../index.html" class="logo" aria-label="Ponto Saudável — página inicial">
+        <img
+          src="https://placehold.co/40x40/1e7d34/white?text=PS"
+          alt="Logotipo Ponto Saudável"
+          width="40"
+          height="40"
+        />
+        <span>Ponto Saudável</span>
+      </a>
+
+      <!-- Localização decorativa — aria-label expõe o texto completo
+           sem que o leitor verbalize o emoji (oculto via aria-hidden). -->
+      <div class="location" aria-label="Localização: São Paulo, SP">
+        <span aria-hidden="true">📍</span>
+        <span>São Paulo, SP</span>
+      </div>
+
+      <!-- role="search" cria um landmark que leitores de tela reconhecem
+           como "área de pesquisa". O <label> com .sr-only é oculto
+           visualmente mas lido pelo leitor de tela ao focar o campo. -->
+      <div class="search-wrapper" role="search">
+        <label for="busca" class="sr-only">Buscar receitas e artigos</label>
+        <input
+          id="busca"
+          type="search"
+          placeholder="Buscar receitas, artigos..."
+          class="search-input"
+        />
+        <span class="search-icon" aria-hidden="true">🔍</span>
+      </div>
+
+      <!-- aria-current="page" sinaliza ao leitor de tela que este é o
+           link da página atualmente aberta — equivalente ao "active"
+           visual para quem não enxerga o sublinhado/destaque. -->
+      <nav aria-label="Menu principal">
+        <ul class="nav-list">
+          <li><a href="../questionario/passo-1.html" aria-current="page">Questionário</a></li>
+          <li><a href="#">Receitas</a></li>
+          <li><a href="#">Artigos</a></li>
+          <li><a href="#">Meu Perfil</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="btn-entrar">Entrar</button>
+
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       CONTEÚDO PRINCIPAL
+       <main> é o landmark central da página — leitores de tela oferecem
+       um atalho de teclado para saltar diretamente até aqui.
+  ====================================================================== -->
+  <main>
+
+    <div class="quiz-page">
+      <div class="quiz-container">
+
+        <!-- ==============================================================
+             PAINEL LATERAL ESQUERDO
+             Usa <aside> porque é um conteúdo auxiliar (título, progresso,
+             imagem ilustrativa) relacionado ao conteúdo principal, mas
+             não parte direta da tarefa em si (responder à pergunta).
+        ============================================================== -->
+        <aside class="quiz-sidebar" aria-label="Painel do questionário">
+
+          <!-- h1 é o título principal desta página — define o tópico
+               do documento; deve haver apenas um por página. -->
+          <h1 class="quiz-sidebar__title">Questionário</h1>
+
+          <p class="quiz-sidebar__desc">
+            Responda algumas perguntas para que possamos personalizar sua
+            experiência e recomendar as melhores receitas para seus objetivos.
+          </p>
+
+          <!-- Bloco de progresso
+               role="progressbar" expõe semanticamente o componente como
+               uma barra de progresso para tecnologias assistivas.
+               aria-valuenow / aria-valuemin / aria-valuemax fornecem
+               os valores numéricos; aria-label descreve o que está
+               sendo medido. Sem esses atributos, a barra seria apenas
+               um <div> sem significado para leitores de tela. -->
+          <div class="quiz-progress">
+            <div class="quiz-progress__header">
+              <span class="quiz-progress__label">Progresso</span>
+              <span class="quiz-progress__step">1 de 3</span>
+            </div>
+            <div
+              role="progressbar"
+              aria-valuenow="33"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Progresso do questionário: passo 1 de 3"
+              class="quiz-progress__bar-track"
+            >
+              <!-- Barra preenchida a ~33% (passo 1 de 3) -->
+              <div class="quiz-progress__bar-fill" style="width: 33%;"></div>
+            </div>
+          </div>
+
+          <!-- Imagem ilustrativa
+               alt descritivo: informa o conteúdo da foto para quem
+               não a enxerga. width/height reservam espaço e evitam
+               layout shift durante o carregamento. -->
+          <div class="quiz-sidebar__image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&auto=format&fit=crop"
+              alt="Mesa com alimentos saudáveis: frutas, legumes e grãos coloridos dispostos em tigelas"
+              class="quiz-sidebar__image"
+              width="360"
+              height="240"
+            />
+            <!-- Legenda sobreposta à imagem — tratada como decorativa
+                 (aria-hidden) pois a imagem já tem alt descritivo e
+                 a legenda é citação de apoio, não informação essencial.
+                 NOTA: o contraste do texto branco sobre o gradiente escuro
+                 pode variar conforme a imagem carregada. -->
+            <p class="quiz-sidebar__caption" aria-hidden="true">
+              "A nutrição é a base para uma vida equilibrada."
+            </p>
+          </div>
+
+        </aside>
+
+        <!-- ==============================================================
+             ÁREA PRINCIPAL — PERGUNTA DO PASSO 1
+             <section> identifica semanticamente esta área como uma região
+             com conteúdo relacionado; aria-labelledby aponta ao título
+             da pergunta para que leitores de tela anunciem o nome da
+             região ao entrar.
+        ============================================================== -->
+        <section class="quiz-main" aria-labelledby="question-title">
+
+          <!-- h2 porque está hierarquicamente abaixo do h1 do painel lateral -->
+          <h2 id="question-title" class="quiz-question__title">
+            Quantas refeições você costuma fazer por dia?
+          </h2>
+          <!-- Subtítulo presente apenas no passo 1, como no mockup -->
+          <p class="quiz-question__subtitle">
+            Isso nos ajuda a entender seus hábitos alimentares e rotina.
+          </p>
+
+          <!-- <fieldset> agrupa semanticamente as opções de resposta
+               de uma mesma pergunta. <legend> é o rótulo acessível do
+               grupo — leitores de tela anunciam a legend ao entrar no
+               fieldset, deixando claro a qual pergunta cada opção pertence.
+               Isso é especialmente importante em formulários com múltiplas
+               perguntas ou quando as opções são lidas fora de contexto. -->
+          <fieldset class="quiz-options">
+            <legend class="quiz-options__legend">
+              Selecione uma opção para a pergunta acima
+            </legend>
+
+            <!-- Cada opção é um <label> que envolve um <input type="radio">
+                 oculto visualmente (mas presente na árvore de acessibilidade)
+                 e um indicador visual customizado. O label associado ao input
+                 torna toda a área do card clicável — útil para usuários com
+                 dificuldades motoras que têm alvos de toque maiores. -->
+            <label class="quiz-option">
+              <input
+                type="radio"
+                name="refeicoes"
+                value="apenas-1"
+                class="quiz-option__input"
+              />
+              <!-- aria-hidden no indicador visual: é puramente decorativo;
+                   a semântica já está no <input> + <label> acima. -->
+              <span class="quiz-option__indicator" aria-hidden="true"></span>
+              <span>Apenas 1 refeição</span>
+            </label>
+
+            <label class="quiz-option">
+              <input
+                type="radio"
+                name="refeicoes"
+                value="ate-3"
+                class="quiz-option__input"
+              />
+              <span class="quiz-option__indicator" aria-hidden="true"></span>
+              <span>Até 3 refeições</span>
+            </label>
+
+            <label class="quiz-option">
+              <input
+                type="radio"
+                name="refeicoes"
+                value="mais-de-3"
+                class="quiz-option__input"
+              />
+              <span class="quiz-option__indicator" aria-hidden="true"></span>
+              <span>Mais de 3 refeições</span>
+            </label>
+
+          </fieldset>
+
+          <!-- Linha divisória separando as opções dos botões de navegação -->
+          <hr class="quiz-divider" />
+
+          <!-- Navegação entre passos via links <a href>
+               Usamos <a> e não <button> pois a ação é navegar para outro
+               documento HTML — semântica correta e comportamento nativo
+               do navegador (histórico de navegação, acessível por teclado).
+               O botão "Voltar" do passo 1 retorna à Home. -->
+          <nav class="quiz-nav" aria-label="Navegação entre passos do questionário">
+            <a href="../index.html" class="quiz-nav__back">← Voltar</a>
+            <a href="passo-2.html" class="quiz-nav__next">Continuar →</a>
+          </nav>
+
+        </section>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =====================================================================
+       FOOTER
+       Mantido igual ao da Home para consistência de identidade visual.
+       <footer> é um landmark — leitores de tela identificam como "rodapé".
+  ====================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">© 2024 Ponto Saudável. Nutrição e Bem-estar.</p>
+      <!-- Segundo <nav> com aria-label distinto, evitando confusão com
+           o menu principal ao listar todos os navs da página. -->
+      <nav aria-label="Links do rodapé">
+        <ul class="footer-links">
+          <li><a href="#">Privacidade</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
