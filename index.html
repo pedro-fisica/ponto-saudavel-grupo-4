@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
   <meta charset="UTF-8" />
   <!-- Viewport garante que o layout responsivo funcione em dispositivos móveis -->
@@ -8,6 +8,7 @@
   <!-- Meta description ajuda motores de busca e é lida por alguns leitores de tela -->
   <meta name="description" content="Receitas nutritivas, artigos confiáveis e recomendações personalizadas para o seu bem-estar diário." />
   <link rel="stylesheet" href="css/styles.css" />
+
 </head>
 <body>
 
@@ -21,12 +22,11 @@
 
       <!-- Logo: <a> com aria-label descritivo torna o destino claro para
            leitores de tela que leem apenas os links da página. -->
-      <a href="/" class="logo" aria-label="Ponto Saudável — página inicial">
+      <a href="/" class="logo">
         <!-- alt descritivo informa o conteúdo da imagem para usuários que
              não a enxergam. width/height evitam reflow ao carregar. -->
         <img
-          src="https://placehold.co/40x40/1e7d34/white?text=PS"
-          alt="Logotipo Ponto Saudável"
+          src="https://placehold.co/40x40/1e7d34/white?text=PS" alt=""
           width="40"
           height="40"
         />
@@ -36,17 +36,16 @@
       <!-- Indicador de localização — texto informativo, sem interação.
            aria-label na div expõe a semântica completa sem repetir o
            emoji (que já é oculto com aria-hidden). -->
-      <div class="location" aria-label="Localização: São Paulo, SP">
-        <span aria-hidden="true">📍</span>
+      <div class="location">
+        <span>📍</span>
         <span>São Paulo, SP</span>
       </div>
 
-      <!-- Campo de busca: role="search" cria um landmark que leitores de
+      <!-- Campo de busca: cria um landmark que leitores de
            tela identificam como "área de pesquisa". O <label> está
            visualmente oculto pela classe .sr-only, mas permanece acessível
            via árvore de acessibilidade e é anunciado ao focar o input. -->
-      <div class="search-wrapper" role="search">
-        <label for="busca" class="sr-only">Buscar receitas e artigos</label>
+      <div class="search-wrapper">
         <input
           id="busca"
           type="search"
@@ -55,22 +54,21 @@
         />
         <!-- aria-hidden no ícone evita que o leitor de tela verbalize
              o emoji decorativo (o label já descreve a função). -->
-        <span class="search-icon" aria-hidden="true">🔍</span>
+        <span class="search-icon">🔍</span>
       </div>
 
       <!-- <nav> é um landmark de navegação. aria-label "Menu principal"
            diferencia este <nav> do rodapé, que terá seu próprio aria-label.
            Isso permite que o usuário salte diretamente para o menu correto. -->
-      <nav aria-label="Menu principal">
+      <nav>
         <!-- <ul> dentro de <nav> é o padrão semântico para listas de links -->
         <ul class="nav-list">
           <li><a href="questionario/passo-1.html">Questionário</a></li>
-          <li><a href="#">Receitas</a></li>
+          <li><a href="receitas.html">Receitas</a></li>
           <li><a href="#">Artigos</a></li>
           <li><a href="#">Meu Perfil</a></li>
         </ul>
       </nav>
-
       <!-- type="button" evita que o botão submeta um formulário por engano -->
       <button type="button" class="btn-entrar">Entrar</button>
 
@@ -90,7 +88,7 @@
          <section> com aria-label descreve a região para leitores de tela.
          Sem aria-label, <section> não seria exposta como landmark.
     =================================================================== -->
-    <section class="hero" aria-label="Seção de destaque">
+    <section class="hero">
       <div class="hero-inner">
 
         <!-- Coluna de texto -->
@@ -128,8 +126,7 @@
                permitindo que usuários de leitor de tela entendam o contexto.
                width/height ajudam o browser a reservar espaço e evitar CLS. -->
           <img
-            src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop"
-            alt="Tigela colorida com salada de folhas verdes, tomate-cereja, abacate e grãos"
+            src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop" alt=""
             class="hero-img"
             width="560"
             height="420"
@@ -138,8 +135,8 @@
           <!-- Badges flutuantes são puramente decorativas — aria-hidden
                remove-as da árvore de acessibilidade para não poluir
                a experiência de leitor de tela. -->
-          <span class="float-badge float-badge--top" aria-hidden="true">♥ Baseado em ciência</span>
-          <span class="float-badge float-badge--bottom" aria-hidden="true">🍴 +500 Receitas</span>
+          <span class="float-badge float-badge--top">♥ Baseado em ciência</span>
+          <span class="float-badge float-badge--bottom">🍴 +500 Receitas</span>
         </div>
 
       </div>
@@ -150,7 +147,7 @@
          aria-labelledby aponta para o id do h2, associando o título à
          região — leitores de tela anunciam o nome da seção ao entrar.
     =================================================================== -->
-    <section class="features" aria-labelledby="features-title">
+    <section class="features">
 
       <!-- h2 porque é um subtítulo da página; hierarquia correta:
            h1 (hero) → h2 (seção) → h3 (cada card). -->
@@ -158,16 +155,15 @@
         Explore o que preparamos para você
       </h2>
 
-      <!-- <ul> é semanticamente correto para uma lista de itens equivalentes.
-           role="list" é adicionado por compatibilidade com Safari/VoiceOver,
+      <!-- <ul> é semanticamente correto para uma lista de itens equivalentes. é adicionado por compatibilidade com Safari/VoiceOver,
            que remove a semântica de lista quando list-style é none. -->
-      <ul class="cards-grid" role="list">
+      <ul class="cards-grid">
 
         <!-- Card Receitas -->
         <li class="card">
           <!-- aria-hidden no ícone decorativo evita que o leitor de tela
                verbalize o emoji, que não acrescenta informação ao contexto. -->
-          <div class="card-icon" aria-hidden="true">🍽️</div>
+          <div class="card-icon">🍽️</div>
           <!-- h3 porque está hierarquicamente abaixo do h2 da seção -->
           <h3 class="card-title">Receitas</h3>
           <p class="card-desc">
@@ -178,7 +174,7 @@
 
         <!-- Card Artigos -->
         <li class="card">
-          <div class="card-icon" aria-hidden="true">📖</div>
+          <div class="card-icon">📖</div>
           <h3 class="card-title">Artigos</h3>
           <p class="card-desc">
             Conteúdos sobre saúde, nutrição e estilo de vida baseados em evidências.
@@ -188,7 +184,7 @@
 
         <!-- Card Seu Perfil -->
         <li class="card">
-          <div class="card-icon" aria-hidden="true">👤</div>
+          <div class="card-icon">👤</div>
           <h3 class="card-title">Seu Perfil</h3>
           <p class="card-desc">
             Responda ao questionário e receba recomendações feitas para você.
@@ -216,7 +212,7 @@
       <!-- Segundo <nav> com aria-label distinto do menu principal,
            permitindo que o usuário saiba que este nav é o rodapé,
            e não o menu de navegação do site. -->
-      <nav aria-label="Links do rodapé">
+      <nav>
         <ul class="footer-links">
           <li><a href="#">Privacidade</a></li>
           <li><a href="#">Termos de Uso</a></li>

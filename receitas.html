@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <!-- Viewport garante layout responsivo em dispositivos móveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Receitas — Ponto Saudável</title>
+  <!-- Meta description: resumo visível em motores de busca e lida por alguns
+       leitores de tela ao navegar pelos resultados de pesquisa. -->
+  <meta name="description" content="Explore receitas saudáveis, práticas e deliciosas selecionadas para o seu bem-estar. Filtre por categoria e encontre o prato ideal." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/receitas.css" />
+
+</head>
+<body>
+
+  <!-- =====================================================================
+       HEADER / NAVBAR
+       Reutiliza a mesma estrutura dos outros arquivos do projeto.
+       Diferença desta página: o item "Receitas" recebe
+       para que tecnologias assistivas anunciem "página atual" ao ler o link
+       — não basta apenas o estilo visual, pois usuários de leitor de tela
+       não percebem CSS.
+  ====================================================================== -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <!-- Logo: aria-label descritivo para leitores de tela que listam
+           somente os links da página (recurso do NVDA/JAWS). -->
+      <a href="home-logada.html" class="logo">
+        <img
+          src="https://placehold.co/40x40/1e7d34/white?text=PS" alt=""
+          width="40"
+          height="40"
+        />
+        <span>Ponto Saudável</span>
+      </a>
+
+      <!-- Indicador de localização: aria-hidden no emoji evita verbalização
+           desnecessária ("pino de mapa" ou código de emoji) pelo leitor de
+           tela. O texto "São Paulo, SP" já transmite a informação completa. -->
+      <div class="location">
+        <span>📍</span>
+        <span>São Paulo, SP</span>
+      </div>
+
+      <!-- Busca global do site: cria um landmark reconhecido
+           por leitores de tela, permitindo saltar direto para o campo com
+           atalhos como F (Forms) no VoiceOver ou S no NVDA.
+           O <label> está visualmente oculto via .sr-only, mas é lido ao
+           focar o input — não depender só do placeholder é prática fundamental,
+           pois o placeholder desaparece ao digitar e não é confiável em todos
+           os leitores de tela. -->
+      <div class="search-wrapper">
+        <input
+          id="busca-header"
+          type="search"
+          placeholder="Buscar receitas, artigos..."
+          class="search-input"
+        />
+        <!-- Ícone decorativo: aria-hidden evita verbalização redundante,
+             pois o label já descreve a função do campo. -->
+        <span class="search-icon">🔍</span>
+      </div>
+
+      <!-- <nav> com aria-label distinto do rodapé: quando há mais de um <nav>
+           na página, diferenciar por aria-label permite que o usuário saiba
+           exatamente qual menu está percorrendo no leitor de tela. no item "Receitas" comunica a página ativa
+           para tecnologias assistivas — complementa (e não substitui) o
+           estilo visual definido no CSS para [aria-current="page"]. -->
+      <nav>
+        <ul class="nav-list">
+          <li><a href="home-logada.html">Home</a></li>
+          <li><a href="../questionario/passo-1.html">Questionário</a></li>
+          <li><a href="receitas.html">Receitas</a></li>
+          <li><a href="#">Artigos</a></li>
+          <li><a href="perfil.html">Meu Perfil</a></li>
+        </ul>
+      </nav>
+      <!-- Avatar do usuário logado: usa <a> pois leva para o perfil —
+           ação de navegação, não uma ação local. O aria-label no <a>
+           descreve destino e contexto ("Perfil de Lucas"), evitando que
+           o leitor de tela leia apenas a URL ou o alt da imagem isolado. -->
+      <a href="perfil.html" class="user-avatar">
+        <img
+          src="https://placehold.co/40x40/1e7d34/white?text=L" alt=""
+          width="40"
+          height="40"
+          class="avatar-img"
+        />
+      </a>
+
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       CONTEÚDO PRINCIPAL
+       <main> é um landmark; a maioria dos leitores de tela oferece atalho
+       de teclado para saltar direto para cá (ex: tecla M no VoiceOver).
+       Deve existir apenas um <main> por página.
+  ====================================================================== -->
+  <main>
+
+    <!-- ==================================================================
+         SEÇÃO DE TÍTULO DA PÁGINA
+         Optamos por envolver título e subtítulo em uma <section> com
+         aria-labelledby para criar um landmark nomeado. Isso ajuda usuários
+         de leitor de tela que navegam por landmarks (regiões) a entender
+         a estrutura da página sem precisar ler todo o conteúdo.
+    =================================================================== -->
+    <section class="receitas-hero">
+      <div class="receitas-hero-inner">
+
+        <!-- h1 é o título principal da página — deve existir apenas um h1
+             por documento. Todos os demais títulos (seções, cards) devem
+             ser h2 ou h3 para manter a hierarquia semântica correta, que
+             leitores de tela usam para criar um "índice" da página. -->
+        <h1 id="receitas-titulo" class="receitas-titulo">Receitas</h1>
+
+        <p class="receitas-subtitulo">
+          Encontre pratos saudáveis, práticos e deliciosos para o seu dia a dia.
+          Selecionadas para o seu bem-estar.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SEÇÃO DE FILTROS E BUSCA
+         Agrupa campo de busca, seletor de categoria e filtros "pill" numa
+         única <section> com título visualmente oculto (h2 .sr-only).
+         Ter um h2 aqui mesmo que invisível preserva a hierarquia de headings
+         — ferramentas como Lighthouse e WAVE verificam se a hierarquia está
+         correta; um salto de h1 para h3 seria apontado como problema.
+    =================================================================== -->
+    <section class="filtros-secao">
+      <div class="filtros-inner">
+
+        <!-- Título visualmente oculto para manter a hierarquia de headings
+             (h1 → h2 → h3) sem poluir o layout visual. -->
+        <h2 id="filtros-titulo">Busca e filtros de receitas</h2>
+
+        <!-- ---------------------------------------------------------------
+             BARRA DE BUSCA E SELETOR DE CATEGORIA
+             Agrupados visualmente lado a lado.
+        ---------------------------------------------------------------- -->
+        <div class="busca-categoria-row">
+
+          <!-- Campo de busca específico desta página (diferente da busca
+               do header): id único "busca-receitas" evita conflito com o
+               id "busca-header" acima. Dois campos com mesmo id na mesma
+               página causariam problema na associação label-input, pois o
+               id deve ser único no documento.
+               O label com for="busca-receitas" cria associação programática:
+               ao focar o input, o leitor de tela anuncia o label antes do
+               placeholder, garantindo contexto mesmo se o placeholder
+               não for lido (comportamento inconsistente entre leitores). -->
+          <div class="busca-receitas-wrapper">
+            <input
+              id="busca-receitas"
+              type="search"
+              placeholder="Buscar receitas..."
+              class="search-input busca-receitas-input"
+            />
+            <!-- Ícone decorativo: aria-hidden, pois o label já descreve
+                 a função e o texto do placeholder complementa visualmente. -->
+            <span class="search-icon">🔍</span>
+          </div>
+
+          <!-- Seletor de categoria implementado como <select> nativo.
+               <select> é a opção mais acessível em HTML puro: funciona com
+               teclado (setas, Enter, espaço), é anunciado corretamente por
+               todos os leitores de tela, e não requer JavaScript para abrir.
+               Um dropdown customizado com divs exigiria muito mais ARIA para
+               atingir o mesmo nível de acessibilidade.
+               O <label> está visualmente oculto, mas é obrigatório para
+               associação programática — WCAG 1.3.1 e 4.1.2 exigem que todo
+               controle de formulário tenha um nome acessível. -->
+          <div class="categoria-wrapper">
+            <select id="filtro-categoria" class="select-categoria">
+              <option value="">Todas Categorias</option>
+              <option value="cafe">Café da Manhã</option>
+              <option value="almoco">Almoço</option>
+              <option value="jantar">Jantar</option>
+              <option value="sobremesa">Sobremesa</option>
+              <option value="lanche">Lanche</option>
+            </select>
+            <!-- Seta visual decorativa: aria-hidden pois o select nativo
+                 já comunica que é um controle expansível ao leitor de tela. -->
+            <span class="select-arrow">▼</span>
+          </div>
+
+        </div>
+
+        <!-- ---------------------------------------------------------------
+             FILTROS EM FORMATO DE "PILL" / TAGS
+             Implementados como <button type="button"> pois representam
+             filtros alternáveis (toggle): cada um pode estar ativo ou inativo,
+             e essa mudança de estado deve ser comunicada a tecnologias
+             assistivas.
+
+             aria-pressed="true/false" é o atributo correto para botões
+             de toggle: quando "true", o leitor de tela anuncia "pressionado"
+             ou "ativado"; quando "false", anuncia "não pressionado" ou
+             "desativado". Isso comunica o estado do filtro sem depender
+             apenas da cor verde (que seria inacessível para usuários com
+             daltonismo ou que usam modo de alto contraste).
+
+             Alternativa considerada: usar <input type="checkbox"> com
+             aparência de pill via CSS. Teria acessibilidade igualmente boa
+             (o estado checked é nativo), mas exigiria um <form> ou
+             para agrupar semanticamente os checkboxes, adicionando complexidade.
+             Optamos por botões com aria-pressed por serem mais flexíveis
+             visualmente e igualmente acessíveis quando usados corretamente.
+
+             Nota: esses filtros não estão agrupados com/aria-label
+             no conjunto — um leitor de tela mais criterioso pode não anunciar
+             que eles formam um grupo de filtros relacionados. Isso é um ponto
+             de melhoria real que ferramentas como axe ou WAVE podem sugerir.
+        ---------------------------------------------------------------- -->
+        <div class="filtros-pills">
+          <!-- "Selecionadas para você" começa ativo (aria-pressed="true") -->
+          <button type="button" class="pill pill--ativo" aria-pressed="true">
+            Selecionadas para você
+          </button>
+          <button type="button" class="pill" aria-pressed="false">
+            Sem Glúten
+          </button>
+          <button type="button" class="pill" aria-pressed="false">
+            Vegano
+          </button>
+          <button type="button" class="pill" aria-pressed="false">
+            Low Carb
+          </button>
+          <button type="button" class="pill" aria-pressed="false">
+            Alta Proteína
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         GRADE DE CARDS DE RECEITAS
+         <section> com aria-labelledby para criar um landmark nomeado.
+         Cada card usa <article> porque é um conteúdo autocontido: cada
+         receita faz sentido por si mesma, poderia ser publicada/lida
+         independentemente e se encaixa na definição de <article> do HTML5.
+         Isso difere de um <div> genérico — leitores de tela anunciam
+         "artigo" ao entrar em cada card, dando contexto ao usuário.
+    =================================================================== -->
+    <section class="receitas-secao">
+      <div class="receitas-inner">
+
+        <!-- h2 visível que nomeia a seção — também serve como destino do
+             aria-labelledby, criando um landmark nomeado "Receitas". -->
+        <h2 id="receitas-grid-titulo">Receitas disponíveis</h2>
+
+        <div class="receitas-grid">
+
+          <!-- ==============================================================
+               CARD 1: Bolo de banana sem açúcar
+               Estrutura de cada card:
+               1. Wrapper da imagem com posicionamento relativo para o botão
+                  de favoritar sobreposto
+               2. Botão de favoritar no canto superior direito
+               3. Corpo do card: h3, metadados
+
+               h3 para os títulos dos cards: h1 (título da página) →
+               h2 (seção de receitas) → h3 (cada receita individual).
+               Pular níveis (ex: h1 → h3) quebraria a hierarquia e seria
+               apontado por ferramentas como axe e Lighthouse como erro.
+          ============================================================== -->
+          <article class="receita-card">
+            <div class="receita-card-img-wrapper">
+              <a
+                href="receita-bolo-banana.html"
+              >
+              <!-- alt descritivo: descreve o conteúdo visual da imagem,
+                   não o nome da receita (que já aparece no h3 abaixo).
+                   Evita redundância como alt="Bolo de banana sem açúcar" que
+                   seria lido junto com o título, repetindo a informação.
+                   A imagem é INFORMATIVA (não decorativa) porque apresenta o
+                   prato visualmente — um alt="" seria incorreto aqui. -->
+              <img
+                src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=400&auto=format&fit=crop" alt=""
+                class="receita-card-img"
+                width="400"
+                height="220"
+                loading="lazy"
+              />
+              </a>
+              <!-- Botão de favoritar:
+                   - Deve ser <button> real (não <div> ou <span> clicável)
+                     para ser focável por teclado e anunciado como botão.
+                   - aria-label inclui o nome da receita para que o leitor de
+                     tela não leia apenas "Favoritar" ou o emoji — quando há
+                     vários botões de favoritar na página, sem o nome da
+                     receita no rótulo todos soariam idênticos ao navegar
+                     por botões (recurso B do NVDA), tornando impossível
+                     distinguir qual é qual.
+                   - aria-pressed="false" comunica o estado inicial (não
+                     favoritado). Mesmo sem JavaScript funcional nesta versão
+                     estática, declarar o atributo educa o usuário sobre a
+                     intenção do controle e mantém a semântica correta para
+                     quando JS for adicionado. Ferramentas de auditoria como
+                     axe verificam se botões de toggle têm aria-pressed. -->
+              <button
+                type="button"
+                class="btn-favoritar"
+                aria-pressed="false"
+              >
+                <!-- Ícone decorativo: o aria-label do botão já comunica
+                     a ação; aria-hidden no span evita que o leitor de tela
+                     verbalize "coração branco" ou similar. -->
+                <span>♡</span>
+              </button>
+            </div>
+
+            <div class="receita-card-body">
+              <!-- h3: terceiro nível (h1 página → h2 seção → h3 receita).
+                   Usar h3 aqui é correto — não pular para h4 ou usar h2,
+                   que causaria conflito com o título da seção. -->
+              <h3 class="receita-card-titulo">
+                <a href="receita-bolo-banana.html" class="receita-card-link">
+                  Bolo de banana sem açúcar
+                </a>
+              </h3>
+
+              <!-- Metadados de tempo e dificuldade:
+                   Os ícones (relógio, talheres) são DECORATIVOS aqui porque
+                   o texto ao lado ("30 min", "Fácil") já comunica a informação
+                   completa. nos ícones evita que o leitor
+                   de tela verbalize "relógio" ou "garfo e faca", o que seria
+                   ruído desnecessário sem agregar significado. -->
+              <div class="card-meta">
+                <span class="meta-item">
+                  <span>⏱</span> 30 min
+                </span>
+                <span class="meta-item">
+                  <span>🍴</span> Fácil
+                </span>
+              </div>
+
+              <!-- Nesta iteração somente esta receita possui página de detalhe.
+                   Os demais cards permanecem estáticos até as próximas telas. -->
+              <a href="receita-bolo-banana.html" class="receita-card-cta">Ver receita</a>
+            </div>
+          </article>
+
+          <!-- ==============================================================
+               CARD 2: Torta de legumes integral
+          ============================================================== -->
+          <article class="receita-card">
+            <div class="receita-card-img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&auto=format&fit=crop" alt=""
+                class="receita-card-img"
+                width="400"
+                height="220"
+                loading="lazy"
+              />
+              <button
+                type="button"
+                class="btn-favoritar"
+                aria-pressed="false"
+              >
+                <span>♡</span>
+              </button>
+            </div>
+            <div class="receita-card-body">
+              <h3 class="receita-card-titulo">Torta de legumes integral</h3>
+              <div class="card-meta">
+                <span class="meta-item">
+                  <span>⏱</span> 45 min
+                </span>
+                <span class="meta-item">
+                  <span>🍴</span> Médio
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ==============================================================
+               CARD 3: Panqueca de aveia e frutas
+          ============================================================== -->
+          <article class="receita-card">
+            <div class="receita-card-img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&auto=format&fit=crop" alt=""
+                class="receita-card-img"
+                width="400"
+                height="220"
+                loading="lazy"
+              />
+              <button
+                type="button"
+                class="btn-favoritar"
+                aria-pressed="false"
+              >
+                <span>♡</span>
+              </button>
+            </div>
+            <div class="receita-card-body">
+              <h3 class="receita-card-titulo">Panqueca de aveia e frutas</h3>
+              <div class="card-meta">
+                <span class="meta-item">
+                  <span>⏱</span> 20 min
+                </span>
+                <span class="meta-item">
+                  <span>🍴</span> Fácil
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ==============================================================
+               CARD 4: Salada colorida com grãos
+          ============================================================== -->
+          <article class="receita-card">
+            <div class="receita-card-img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&auto=format&fit=crop" alt=""
+                class="receita-card-img"
+                width="400"
+                height="220"
+                loading="lazy"
+              />
+              <button
+                type="button"
+                class="btn-favoritar"
+                aria-pressed="false"
+              >
+                <span>♡</span>
+              </button>
+            </div>
+            <div class="receita-card-body">
+              <h3 class="receita-card-titulo">Salada colorida com grãos</h3>
+              <div class="card-meta">
+                <span class="meta-item">
+                  <span>⏱</span> 15 min
+                </span>
+                <span class="meta-item">
+                  <span>🍴</span> Fácil
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ==============================================================
+               CARD 5: Frango grelhado com quinoa
+          ============================================================== -->
+          <article class="receita-card">
+            <div class="receita-card-img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&auto=format&fit=crop" alt=""
+                class="receita-card-img"
+                width="400"
+                height="220"
+                loading="lazy"
+              />
+              <button
+                type="button"
+                class="btn-favoritar"
+                aria-pressed="false"
+              >
+                <span>♡</span>
+              </button>
+            </div>
+            <div class="receita-card-body">
+              <h3 class="receita-card-titulo">Frango grelhado com quinoa</h3>
+              <div class="card-meta">
+                <span class="meta-item">
+                  <span>⏱</span> 35 min
+                </span>
+                <span class="meta-item">
+                  <span>🍴</span> Médio
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ==============================================================
+               CARD 6: Sopa de abóbora com gengibre
+          ============================================================== -->
+          <article class="receita-card">
+            <div class="receita-card-img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1547592180-85f173990554?w=400&auto=format&fit=crop" alt=""
+                class="receita-card-img"
+                width="400"
+                height="220"
+                loading="lazy"
+              />
+              <button
+                type="button"
+                class="btn-favoritar"
+                aria-pressed="false"
+              >
+                <span>♡</span>
+              </button>
+            </div>
+            <div class="receita-card-body">
+              <h3 class="receita-card-titulo">Sopa de abóbora com gengibre</h3>
+              <div class="card-meta">
+                <span class="meta-item">
+                  <span>⏱</span> 30 min
+                </span>
+                <span class="meta-item">
+                  <span>🍴</span> Fácil
+                </span>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /.receitas-grid -->
+
+        <!-- ==================================================================
+             BOTÃO "CARREGAR MAIS RECEITAS"
+             Implementado como <button type="button"> centralizado.
+             Decisão: nesta versão estática não há paginação ou JS real;
+             o botão existe apenas para demonstração do layout e não carrega
+             novos conteúdos. Por ser puramente estático, o botão não tem
+             aria-controls nem aria-live associados — um leitor de tela não
+             receberá feedback após clicar, o que é um ponto de melhoria
+             quando JS for adicionado (aria-live="polite" na região que
+             recebe os novos cards seria o caminho correto).
+             Usamos <button> (não <a href="#">) pois não há destino de
+             navegação — a ação seria executada na página atual; usar <a>
+             com href="#" seria semanticamente incorreto para uma ação.
+        =================================================================== -->
+        <div class="carregar-mais-wrapper">
+          <button type="button" class="btn-carregar-mais btn-secondary">
+            Carregar Mais Receitas
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       FOOTER — reutilizado das outras páginas do projeto.
+       <footer> é landmark; aria-label no <nav> interno o diferencia do
+       menu principal do cabeçalho para usuários de leitor de tela.
+  ====================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">© 2024 Ponto Saudável. Nutrição e Bem-estar.</p>
+      <nav>
+        <ul class="footer-links">
+          <li><a href="#">Privacidade</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -273,12 +273,6 @@
   display: block;
 }
 
-/* Foco visível no radio — quando navegando por teclado, o indicador
-   recebe contorno de foco para orientar o usuário. */
-.quiz-option__input:focus-visible + .quiz-option__indicator {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 2px;
-}
 
 /* Card inteiro destacado quando o radio está checked */
 .quiz-option:has(.quiz-option__input:checked) {

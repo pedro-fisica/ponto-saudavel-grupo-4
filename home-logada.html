@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <!-- Viewport garante layout responsivo em dispositivos móveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ponto Saudável — Bem-vindo, Lucas!</title>
+  <!-- Meta description: resumo da página para motores de busca e leitores de tela -->
+  <meta name="description" content="Página inicial do Ponto Saudável para usuário autenticado, com recomendações personalizadas de alimentação." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/home-logada.css" />
+
+</head>
+<body>
+
+  <!-- =====================================================================
+       HEADER / NAVBAR — mesma estrutura da Home pública.
+       Diferenças para o estado logado:
+         1. Campo de busca tem flex:1 maior para ocupar mais espaço central.
+         2. O botão "Entrar" é substituído pelo avatar do usuário.
+         3. O item "Home" do menu recebe pois esta é
+            a página atual.
+  ====================================================================== -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <!-- Logo: aria-label descritivo para leitores de tela que percorrem
+           apenas a lista de links da página -->
+      <a href="home-logada.html" class="logo">
+        <img
+          src="https://placehold.co/40x40/1e7d34/white?text=PS" alt=""
+          width="40"
+          height="40"
+        />
+        <span>Ponto Saudável</span>
+      </a>
+
+      <!-- Indicador de localização: aria-hidden no emoji evita verbalização
+           desnecessária pelo leitor de tela -->
+      <div class="location">
+        <span>📍</span>
+        <span>São Paulo, SP</span>
+      </div>
+
+      <!-- Busca: cria landmark reconhecido por leitores de tela.
+           O <label> está oculto visualmente (.sr-only) mas presente na
+           árvore de acessibilidade — não depende só do placeholder. -->
+      <div class="search-wrapper">
+        <input
+          id="busca"
+          type="search"
+          placeholder="Buscar receitas, artigos..."
+          class="search-input"
+        />
+        <!-- Ícone decorativo: aria-hidden evita verbalização redundante -->
+        <span class="search-icon">🔍</span>
+      </div>
+
+      <!-- <nav> com aria-label distinto do rodapé para que o usuário saiba
+           exatamente em qual menu de navegação está ao usar leitor de tela.
+           O item "Home" recebe — indica a página atual
+           para tecnologias assistivas sem depender só do estilo visual. -->
+      <nav>
+        <ul class="nav-list">
+          <li><a href="home-logada.html">Home</a></li>
+          <li><a href="questionario/passo-1.html">Questionário</a></li>
+          <li><a href="receitas.html">Receitas</a></li>
+          <li><a href="#">Artigos</a></li>
+          <li><a href="perfil.html">Meu Perfil</a></li>
+        </ul>
+      </nav>
+      <!-- Avatar do usuário: substitui o botão "Entrar" no estado logado.
+           Usa <a> pois leva para o perfil — ação de navegação, não ação.
+           O alt descreve o conteúdo real da imagem para usuários que
+           dependem de leitor de tela; inclui o nome do usuário. -->
+      <a href="perfil.html" class="user-avatar">
+        <img
+          src="https://placehold.co/40x40/1e7d34/white?text=L" alt=""
+          width="40"
+          height="40"
+          class="avatar-img"
+        />
+      </a>
+
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       CONTEÚDO PRINCIPAL
+       <main> é um landmark; leitores de tela oferecem atalho direto para cá.
+       Deve existir apenas um <main> por página.
+  ====================================================================== -->
+  <main>
+
+    <!-- ==================================================================
+         MENSAGEM DE SUCESSO comunica a mensagem de forma não-interruptiva para
+         leitores de tela: o conteúdo é lido assim que a região é carregada,
+         mas não interrompe imediatamente o que o usuário está fazendo
+         (diferente de role="alert", que seria mais urgente). Optamos por pois é uma confirmação positiva e transitória —
+         não representa erro nem situação crítica.
+    =================================================================== -->
+    <div class="success-banner">
+      <!-- aria-hidden no ícone: o emoji é decorativo; o texto já comunica
+           a mensagem completa ao leitor de tela. -->
+      <span class="success-icon">✅</span>
+      <span>Perfil criado com sucesso!</span>
+    </div>
+
+    <!-- ==================================================================
+         SEÇÃO DE BOAS-VINDAS (hero logado)
+         Fundo lilás claro (#f5f4fb) — mesmo da hero da Home pública —
+         mantendo consistência visual entre as telas.
+         aria-labelledby aponta para o h1, tornando a seção um landmark
+         nomeado para leitores de tela.
+    =================================================================== -->
+    <section class="hero hero--logado">
+      <div class="hero-inner">
+
+        <!-- Coluna de texto -->
+        <div class="hero-text">
+
+          <!-- h1 é o título principal desta página; deve existir apenas um
+               h1 por documento. Hierarquia: h1 (boas-vindas) → h2 (seções)
+               → h3 (cards). -->
+          <h1 id="boas-vindas-titulo" class="hero-title">Olá, Lucas!</h1>
+
+          <p class="hero-desc">
+            Seu perfil alimentar está pronto. Com base nas suas respostas,
+            preparamos recomendações personalizadas para ajudar você a alcançar
+            seus objetivos de saúde com muito sabor.
+          </p>
+
+          <div class="hero-actions">
+            <!-- <a> com href: ação de navegação → uso de link, não botão.
+                 Aponta para # pois a página de "plano completo" não existe
+                 ainda neste projeto estático. -->
+            <a href="#" class="btn-primary">Ver meu plano completo →</a>
+          </div>
+
+        </div>
+
+        <!-- Coluna da imagem -->
+        <div class="hero-image-wrapper">
+          <!-- alt descritivo transmite o conteúdo visual da imagem para
+               usuários de leitor de tela, sem depender de placeholder. -->
+          <img
+            src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop" alt=""
+            class="hero-img"
+            width="560"
+            height="420"
+          />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SEÇÃO "PARA VOCÊ HOJE"
+         aria-labelledby associa o h2 como nome da seção — leitores de
+         tela anunciam o título ao entrar nesta região.
+    =================================================================== -->
+    <section class="para-voce">
+      <div class="section-inner">
+
+        <!-- h2: segundo nível da hierarquia de títulos desta página -->
+        <h2 id="para-voce-titulo" class="section-title">Para Você Hoje</h2>
+
+        <div class="para-voce-grid">
+
+          <!-- Card de receita — maior, à esquerda -->
+          <!-- Usamos <article> pois é um conteúdo autocontido (receita)
+               que faria sentido fora do contexto da página. -->
+          <article class="card-receita">
+
+            <div class="card-receita-image-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&auto=format&fit=crop" alt=""
+                class="card-receita-img"
+                width="480"
+                height="240"
+              />
+              <!-- Etiqueta sobre a imagem — aria-hidden porque a mesma
+                   informação é transmitida no contexto do card (título,
+                   descrição); duplicar no leitor de tela não agrega valor. -->
+              <span class="card-tag">Café da Manhã</span>
+
+              <!-- Botão de favoritar: como não há funcionalidade JS real
+                   nesta versão estática, usamos <button> com aria-label
+                   descritivo. Omitimos aria-pressed pois não há estado
+                   toggle implementado — ponto aceitável de melhoria futura. -->
+              <button
+                type="button"
+                class="btn-favoritar"
+              >
+                <!-- Ícone decorativo dentro do botão; o aria-label no
+                     <button> já comunica a ação ao leitor de tela. -->
+                <span>♡</span>
+              </button>
+            </div>
+
+            <div class="card-receita-body">
+
+              <!-- h3: terceiro nível da hierarquia (h1 → h2 → h3) -->
+              <h3 class="card-receita-title">Panqueca de aveia e frutas</h3>
+
+              <p class="card-receita-desc">
+                Uma opção rápida, nutritiva e deliciosa para começar o dia com
+                energia. Rica em fibras e ideal para o seu perfil.
+              </p>
+
+              <!-- Metadados: ícones decorativos aria-hidden; o texto adjacente
+                   já transmite a informação (tempo e dificuldade). -->
+              <div class="card-meta">
+                <span class="meta-item">
+                  <span>⏱</span> 20 min
+                </span>
+                <span class="meta-item">
+                  <span>⭐</span> Fácil
+                </span>
+              </div>
+
+              <p class="card-baseado">
+                <span>✓</span> Baseado no seu questionário
+              </p>
+
+              <a href="#" class="card-link">Ver receita →</a>
+
+            </div>
+          </article>
+
+          <!-- Card de artigo — menor, à direita -->
+          <article class="card-artigo">
+
+            <!-- Rótulo de categoria: ícone decorativo, aria-hidden -->
+            <p class="card-artigo-label">
+              <span>📖</span> LEITURA SUGERIDA
+            </p>
+
+            <!-- h3: mesmo nível hierárquico dos títulos de receita -->
+            <h3 class="card-artigo-title">Como reduzir ultraprocessados</h3>
+
+            <p class="card-artigo-desc">
+              Pequenas trocas no dia a dia podem transformar sua saúde. Veja
+              estratégias simples para uma alimentação mais natural.
+            </p>
+
+            <img
+              src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&auto=format&fit=crop" alt=""
+              class="card-artigo-img"
+              width="300"
+              height="160"
+            />
+
+            <a href="#" class="btn-secondary btn-artigo">Ler artigo (5 min)</a>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         GRADE DE ATALHOS
+         Cada card é um <a> (link de navegação) e não um <button>, pois
+         todos levam para outra página/seção — uso semântico correto para
+         ações de navegação.
+         aria-labelledby nomeia a seção para leitores de tela.
+    =================================================================== -->
+    <section class="atalhos">
+      <div class="section-inner">
+
+        <!-- Título visualmente menor — estilo, não hierarquia semântica -->
+        <h2 id="atalhos-titulo" class="section-title section-title--sm">Acesso Rápido</h2>
+
+        <!-- em ul com list-style:none — compatibilidade com
+             VoiceOver/Safari que remove semântica de lista quando não há
+             marcadores visuais. -->
+        <ul class="atalhos-grid">
+
+          <li>
+            <!-- aria-label no link garante que o leitor de tela anuncie
+                 o destino, não apenas o emoji ou o texto isolado. -->
+            <a href="receitas.html" class="atalho-card">
+              <span class="atalho-icon">🍴</span>
+              <span class="atalho-label">Todas Receitas</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="atalho-card">
+              <span class="atalho-icon">📄</span>
+              <span class="atalho-label">Artigos</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="atalho-card">
+              <span class="atalho-icon">♡</span>
+              <span class="atalho-label">Favoritos</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="perfil.html" class="atalho-card">
+              <span class="atalho-icon">👤</span>
+              <span class="atalho-label">Meu Perfil</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       FOOTER — reutilizado das outras páginas do projeto.
+       <footer> é landmark; aria-label no <nav> interno o diferencia do
+       menu principal no início da página.
+  ====================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">© 2024 Ponto Saudável. Nutrição e Bem-estar.</p>
+      <nav>
+        <ul class="footer-links">
+          <li><a href="#">Privacidade</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

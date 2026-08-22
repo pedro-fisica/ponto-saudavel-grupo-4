@@ -42,34 +42,6 @@ body {
   line-height: 1.6;
 }
 
-/* -----------------------------------------------------------------------------
-   Classe utilitária .sr-only
-   Oculta visualmente o elemento, mas mantém-no acessível para leitores
-   de tela e tecnologias assistivas (padrão amplamente adotado).
------------------------------------------------------------------------------ */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* -----------------------------------------------------------------------------
-   Foco visível (:focus-visible)
-   Exibe um contorno de foco apenas quando o usuário navega pelo teclado
-   (não aparece ao clicar com o mouse), melhorando a experiência de
-   navegação por teclado sem poluir a interface para usuários de mouse.
------------------------------------------------------------------------------ */
-:focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
-}
 
 /* =============================================================================
    HEADER / NAVBAR
@@ -168,13 +140,6 @@ body {
   background-color: rgba(30, 125, 52, 0.07);
 }
 
-/* Estado ativo no menu — indica a página atual ao usuário */
-.nav-list a[aria-current="page"] {
-  color: var(--color-primary);
-  font-weight: 600;
-  background-color: rgba(30, 125, 52, 0.1);
-}
-
 /* Botão "Entrar" */
 .btn-entrar {
   background-color: var(--color-primary);
@@ -194,6 +159,7 @@ body {
 .btn-entrar:hover {
   background-color: var(--color-primary-dk);
 }
+
 
 /* =============================================================================
    HERO SECTION
