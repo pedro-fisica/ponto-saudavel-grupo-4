@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questionário — Passo 2 de 3 | Ponto Saudável</title>
+  <meta name="description" content="Responda ao questionário e receba recomendações personalizadas de alimentação saudável. Passo 2 de 3." />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/questionario.css" />
+</head>
+<body>
+
+  <!-- =====================================================================
+       HEADER / NAVBAR — mesmo da Home e do passo 1.
+       aria-current="page" no link "Questionário" informa ao leitor de tela
+       que esta é a seção atualmente ativa.
+  ====================================================================== -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="../index.html" class="logo" aria-label="Ponto Saudável — página inicial">
+        <img
+          src="https://placehold.co/40x40/1e7d34/white?text=PS"
+          alt="Logotipo Ponto Saudável"
+          width="40"
+          height="40"
+        />
+        <span>Ponto Saudável</span>
+      </a>
+
+      <div class="location" aria-label="Localização: São Paulo, SP">
+        <span aria-hidden="true">📍</span>
+        <span>São Paulo, SP</span>
+      </div>
+
+      <div class="search-wrapper" role="search">
+        <label for="busca" class="sr-only">Buscar receitas e artigos</label>
+        <input
+          id="busca"
+          type="search"
+          placeholder="Buscar receitas, artigos..."
+          class="search-input"
+        />
+        <span class="search-icon" aria-hidden="true">🔍</span>
+      </div>
+
+      <nav aria-label="Menu principal">
+        <ul class="nav-list">
+          <li><a href="passo-2.html" aria-current="page">Questionário</a></li>
+          <li><a href="#">Receitas</a></li>
+          <li><a href="#">Artigos</a></li>
+          <li><a href="#">Meu Perfil</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="btn-entrar">Entrar</button>
+
+    </div>
+  </header>
+
+  <main>
+
+    <div class="quiz-page">
+      <div class="quiz-container">
+
+        <!-- ==============================================================
+             PAINEL LATERAL ESQUERDO
+             Mesmo estrutura do passo 1; o progresso é atualizado para
+             refletir o passo atual (2 de 3, ~66%).
+        ============================================================== -->
+        <aside class="quiz-sidebar" aria-label="Painel do questionário">
+
+          <h1 class="quiz-sidebar__title">Questionário</h1>
+
+          <p class="quiz-sidebar__desc">
+            Estamos quase lá! Defina seu principal objetivo para
+            receber as melhores recomendações personalizadas.
+          </p>
+
+          <!-- Barra de progresso — passo 2 de 3 equivale a ~66%.
+               aria-valuenow é atualizado para 66 nesta página. -->
+          <div class="quiz-progress">
+            <div class="quiz-progress__header">
+              <span class="quiz-progress__label">Progresso</span>
+              <span class="quiz-progress__step">2 de 3</span>
+            </div>
+            <div
+              role="progressbar"
+              aria-valuenow="66"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Progresso do questionário: passo 2 de 3"
+              class="quiz-progress__bar-track"
+            >
+              <div class="quiz-progress__bar-fill" style="width: 66%;"></div>
+            </div>
+          </div>
+
+          <div class="quiz-sidebar__image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&auto=format&fit=crop"
+              alt="Tigela com salada colorida de folhas verdes, tomate-cereja, abacate e sementes"
+              class="quiz-sidebar__image"
+              width="360"
+              height="240"
+            />
+            <p class="quiz-sidebar__caption" aria-hidden="true">
+              "Cada escolha alimentar é um passo em direção ao seu objetivo."
+            </p>
+          </div>
+
+        </aside>
+
+        <!-- ==============================================================
+             ÁREA PRINCIPAL — PERGUNTA DO PASSO 2
+        ============================================================== -->
+        <section class="quiz-main" aria-labelledby="question-title">
+
+          <h2 id="question-title" class="quiz-question__title">
+            Qual seu principal objetivo com a alimentação saudável?
+          </h2>
+          <!-- Sem subtítulo neste passo, conforme o mockup -->
+
+          <!-- <fieldset> + <legend> garantem que as opções sejam
+               semanticamente agrupadas sob a mesma pergunta,
+               independentemente de como o leitor de tela navega. -->
+          <fieldset class="quiz-options">
+            <legend class="quiz-options__legend">
+              Selecione uma opção para a pergunta acima
+            </legend>
+
+            <label class="quiz-option">
+              <input
+                type="radio"
+                name="objetivo"
+                value="emagrecimento"
+                class="quiz-option__input"
+              />
+              <span class="quiz-option__indicator" aria-hidden="true"></span>
+              <span>Emagrecimento</span>
+            </label>
+
+            <label class="quiz-option">
+              <input
+                type="radio"
+                name="objetivo"
+                value="ganho-massa"
+                class="quiz-option__input"
+              />
+              <span class="quiz-option__indicator" aria-hidden="true"></span>
+              <span>Ganho de massa muscular</span>
+            </label>
+
+            <label class="quiz-option">
+              <input
+                type="radio"
+                name="objetivo"
+                value="energia-saude"
+                class="quiz-option__input"
+              />
+              <span class="quiz-option__indicator" aria-hidden="true"></span>
+              <span>Ter mais energia e saúde</span>
+            </label>
+
+          </fieldset>
+
+          <hr class="quiz-divider" />
+
+          <!-- O botão "Voltar" retorna ao passo anterior (passo-1.html).
+               O botão "Continuar" avança para o passo 3. -->
+          <nav class="quiz-nav" aria-label="Navegação entre passos do questionário">
+            <a href="passo-1.html" class="quiz-nav__back">← Voltar</a>
+            <a href="passo-3.html" class="quiz-nav__next">Continuar →</a>
+          </nav>
+
+        </section>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">© 2024 Ponto Saudável. Nutrição e Bem-estar.</p>
+      <nav aria-label="Links do rodapé">
+        <ul class="footer-links">
+          <li><a href="#">Privacidade</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

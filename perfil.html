@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Viewport garante layout responsivo em dispositivos móveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Perfil — Crie seu perfil | Ponto Saudável</title>
+  <meta name="description" content="Crie seu perfil no Ponto Saudável e receba recomendações de alimentação personalizadas." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/perfil.css" />
+</head>
+<body>
+
+  <!-- =====================================================================
+       HEADER / NAVBAR — mesmo da Home e do questionário.
+       O item "Meu Perfil" recebe aria-current="page" para sinalizar ao
+       leitor de tela qual seção está ativa no menu.
+  ====================================================================== -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="index.html" class="logo" aria-label="Ponto Saudável — página inicial">
+        <img
+          src="https://placehold.co/40x40/1e7d34/white?text=PS"
+          alt="Logotipo Ponto Saudável"
+          width="40"
+          height="40"
+        />
+        <span>Ponto Saudável</span>
+      </a>
+
+      <div class="location" aria-label="Localização: São Paulo, SP">
+        <span aria-hidden="true">📍</span>
+        <span>São Paulo, SP</span>
+      </div>
+
+      <div class="search-wrapper" role="search">
+        <!-- <label> associado ao input via for/id — necessário para que
+             leitores de tela anunciem o rótulo ao focar o campo -->
+        <label for="busca" class="sr-only">Buscar receitas e artigos</label>
+        <input
+          id="busca"
+          type="search"
+          placeholder="Buscar receitas, artigos..."
+          class="search-input"
+        />
+        <!-- Ícone decorativo; aria-hidden impede que o leitor de tela
+             verbalize o emoji, pois o label já descreve a função -->
+        <span class="search-icon" aria-hidden="true">🔍</span>
+      </div>
+
+      <nav aria-label="Menu principal">
+        <ul class="nav-list">
+          <li><a href="questionario/passo-1.html">Questionário</a></li>
+          <li><a href="#">Receitas</a></li>
+          <li><a href="#">Artigos</a></li>
+          <!-- aria-current="page" indica ao leitor de tela que este é
+               o link da página atual; evita que o usuário navegue
+               desnecessariamente para onde já está -->
+          <li><a href="perfil.html" aria-current="page">Meu Perfil</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="btn-entrar">Entrar</button>
+
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       CONTEÚDO PRINCIPAL
+       <main> é um landmark; leitores de tela oferecem atalho para cá.
+       Deve existir apenas um <main> por página.
+  ====================================================================== -->
+  <main>
+
+    <div class="perfil-page">
+      <div class="perfil-card">
+
+        <!-- Ícone circular de pessoa — puramente decorativo, pois o
+             heading abaixo já comunica o contexto da tela.
+             aria-hidden remove o emoji da árvore de acessibilidade,
+             evitando verbalização desnecessária pelo leitor de tela. -->
+        <div class="perfil-avatar" aria-hidden="true">👤</div>
+
+        <!-- h1 é o título principal da página — um único h1 por documento
+             define o tópico principal e é o primeiro anúncio do leitor de
+             tela ao carregar a página. -->
+        <h1 class="perfil-title">Crie seu perfil</h1>
+
+        <p class="perfil-desc">
+          Preencha seus dados para receber recomendações personalizadas.
+        </p>
+
+        <!-- <form> semântico com action="#" — página estática sem backend.
+             Os campos são rotulados via <label for="..."> associado ao
+             <input id="...">, garantindo que leitores de tela anunciem
+             o rótulo correto ao focar cada campo (sem depender do
+             atributo placeholder, que não é exposto consistentemente
+             por todas as tecnologias assistivas). -->
+        <form class="perfil-form" action="#" method="post" novalidate>
+
+          <!-- Campo: Nome -->
+          <div class="form-group">
+            <!-- <label> acima do campo — padrão de usabilidade recomendado
+                 para formulários; associação via for/id é mais robusta
+                 que o label envolvendo o input (wrap), especialmente com
+                 leitores de tela mais antigos. -->
+            <label for="nome" class="form-label">Nome</label>
+            <input
+              id="nome"
+              type="text"
+              name="nome"
+              class="form-input"
+              placeholder="Seu nome completo"
+              autocomplete="name"
+            />
+          </div>
+
+          <!-- Campo: Data de Nascimento -->
+          <div class="form-group">
+            <label for="nascimento" class="form-label">Data de Nascimento</label>
+            <input
+              id="nascimento"
+              type="date"
+              name="nascimento"
+              class="form-input"
+              autocomplete="bday"
+            />
+          </div>
+
+          <!-- Campo: E-mail — ícone de envelope decorativo dentro do campo -->
+          <div class="form-group">
+            <label for="email" class="form-label">E-mail</label>
+            <div class="input-icon-wrapper">
+              <!-- aria-hidden no ícone: é puramente decorativo;
+                   o tipo "email" e o placeholder já descrevem o campo -->
+              <span class="input-icon input-icon--left" aria-hidden="true">✉️</span>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                class="form-input form-input--with-icon-left"
+                placeholder="seu@email.com"
+                autocomplete="email"
+              />
+            </div>
+          </div>
+
+          <!-- Campo: Senha — ícone de cadeado e "olho" decorativos -->
+          <div class="form-group">
+            <label for="senha" class="form-label">Senha</label>
+            <div class="input-icon-wrapper">
+              <!-- Ícone de cadeado: decorativo, aria-hidden -->
+              <span class="input-icon input-icon--left" aria-hidden="true">🔒</span>
+              <input
+                id="senha"
+                type="password"
+                name="senha"
+                class="form-input form-input--with-icon-left form-input--with-icon-right"
+                placeholder="Crie uma senha"
+                autocomplete="new-password"
+              />
+              <!-- Ícone de olho: decorativo nesta versão estática (sem JS
+                   para toggle). Em uma implementação real, este botão
+                   precisaria de aria-label e funcionalidade de teclado. -->
+              <span class="input-icon input-icon--right" aria-hidden="true">👁</span>
+            </div>
+          </div>
+
+          <!-- Botão de submissão — type="submit" é o padrão semântico
+               correto para envio de formulário; o navegador o ativa com
+               Enter em qualquer campo do formulário. -->
+          <button type="submit" class="btn-criar-perfil">Criar perfil</button>
+
+        </form>
+
+        <!-- Rodapé do card — ícone de cadeado decorativo -->
+        <p class="perfil-footer-note">
+          <!-- aria-hidden no ícone evita que o leitor de tela verbalize
+               o emoji antes do texto, que já carrega a informação completa -->
+          <span aria-hidden="true">🔒</span>
+          Seus dados estão protegidos conosco.
+        </p>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =====================================================================
+       FOOTER — mesmo da Home e do questionário.
+  ====================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">© 2024 Ponto Saudável. Nutrição e Bem-estar.</p>
+      <nav aria-label="Links do rodapé">
+        <ul class="footer-links">
+          <li><a href="#">Privacidade</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

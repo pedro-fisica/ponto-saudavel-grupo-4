@@ -1,0 +1,380 @@
+/* =============================================================================
+   PONTO SAUDÁVEL — Estilos do Questionário
+   Complementa css/styles.css com os componentes específicos da tela
+   de questionário (layout de duas colunas, cards de opção, barra de
+   progresso, botões de navegação entre passos).
+============================================================================= */
+
+/* =============================================================================
+   LAYOUT PRINCIPAL DA TELA
+   Fundo lilás claro idêntico ao da hero da Home, mantendo consistência
+   visual entre as telas do site.
+============================================================================= */
+.quiz-page {
+  background-color: var(--color-hero-bg);
+  min-height: calc(100vh - 60px); /* ocupa o restante da tela abaixo do header */
+  padding: 2.5rem 1.5rem;
+}
+
+.quiz-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  /* Duas colunas: painel lateral (1 parte) + área da pergunta (2 partes) */
+  grid-template-columns: 1fr 2fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+/* =============================================================================
+   PAINEL LATERAL ESQUERDO
+   Usa <aside> no HTML porque é um conteúdo complementar à tarefa
+   principal (a pergunta), mas relacionado ao fluxo geral.
+============================================================================= */
+.quiz-sidebar {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Título principal da página ("Questionário") */
+.quiz-sidebar__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.25;
+}
+
+/* Descrição curta abaixo do título */
+.quiz-sidebar__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------------
+   Bloco de progresso
+   Agrupa rótulo, texto numérico e barra de progresso.
+------------------------------------------------------------------ */
+.quiz-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quiz-progress__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Linha com "Progresso" e "X de 3" lado a lado */
+.quiz-progress__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quiz-progress__step {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Barra de progresso
+   role="progressbar" + aria-valuenow/min/max comunicam o estado
+   de progresso a leitores de tela sem depender de CSS.
+   aria-label fornece um nome acessível ao componente. */
+.quiz-progress__bar-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.quiz-progress__bar-fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  transition: width 0.3s ease;
+}
+
+/* ------------------------------------------------------------------
+   Imagem ilustrativa
+   Container posicionado de forma relativa para suportar legenda
+   sobreposta (como no mockup).
+------------------------------------------------------------------ */
+.quiz-sidebar__image-wrap {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.quiz-sidebar__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+  /* Sem filter para não degradar visibilidade da imagem em si */
+}
+
+/* Legenda sobreposta à imagem
+   NOTA: texto sobre imagem sem overlay escuro pode ter contraste
+   insuficiente dependendo do conteúdo da foto — ponto de avaliação. */
+.quiz-sidebar__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-style: italic;
+  padding: 1.5rem 0.875rem 0.75rem;
+  line-height: 1.4;
+}
+
+/* =============================================================================
+   ÁREA PRINCIPAL — CARD DA PERGUNTA
+============================================================================= */
+.quiz-main {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Título da pergunta */
+.quiz-question__title {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+/* Subtítulo/contexto opcional (apenas passo 1) */
+.quiz-question__subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 0.35rem;
+}
+
+/* ------------------------------------------------------------------
+   Fieldset e legend
+   <fieldset> agrupa semanticamente as opções de uma mesma pergunta.
+   <legend> é o rótulo acessível do grupo — leitores de tela anunciam
+   a legend antes de cada opção, tornando claro a qual pergunta
+   a resposta pertence (especialmente importante em formulários longos).
+------------------------------------------------------------------ */
+.quiz-options {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* A <legend> é visualmente oculta pois a heading da pergunta já
+   desempenha esse papel visualmente; mantemos a legend para
+   acessibilidade (leitores de tela a anunciam ao entrar no fieldset). */
+.quiz-options__legend {
+  /* Não usa .sr-only aqui para não interferir no layout do fieldset;
+     posicionamos com float para manter o comportamento nativo do fieldset. */
+  float: left;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+/* ------------------------------------------------------------------
+   Cards de opção (radio estilizado)
+   Cada opção é um <label> que envolve um <input type="radio"> oculto.
+   O label inteiro é clicável, ampliando a área de toque — importante
+   para usuários com dificuldades motoras.
+------------------------------------------------------------------ */
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  position: relative;
+}
+
+.quiz-option:hover {
+  border-color: var(--color-primary);
+  background-color: rgba(30, 125, 52, 0.04);
+}
+
+/* O input radio está visualmente oculto mas permanece na árvore
+   de acessibilidade, permitindo navegação por teclado e uso com
+   leitores de tela. NÃO usamos display:none ou visibility:hidden
+   pois isso o removeria do fluxo de teclado. */
+.quiz-option__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Círculo visual customizado que substitui o radio nativo */
+.quiz-option__indicator {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-color: var(--color-white);
+  transition: border-color 0.2s, background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ponto interno do radio quando selecionado */
+.quiz-option__indicator::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  display: none;
+}
+
+/* Estado selecionado — quando o radio está checked, o label adjacente
+   recebe estilo via seletor CSS (sem JavaScript). */
+.quiz-option__input:checked + .quiz-option__indicator {
+  border-color: var(--color-primary);
+  background-color: rgba(30, 125, 52, 0.08);
+}
+
+.quiz-option__input:checked + .quiz-option__indicator::after {
+  display: block;
+}
+
+/* Foco visível no radio — quando navegando por teclado, o indicador
+   recebe contorno de foco para orientar o usuário. */
+.quiz-option__input:focus-visible + .quiz-option__indicator {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Card inteiro destacado quando o radio está checked */
+.quiz-option:has(.quiz-option__input:checked) {
+  border-color: var(--color-primary);
+  background-color: rgba(30, 125, 52, 0.06);
+}
+
+/* ------------------------------------------------------------------
+   Linha divisória entre opções e botões de navegação
+------------------------------------------------------------------ */
+.quiz-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------
+   Botões de navegação entre passos
+   Dois botões lado a lado: "Voltar" (outline) + "Continuar"/"Finalizar" (sólido).
+   Usamos <a href> porque a ação é navegar para outro documento HTML,
+   não submeter um formulário — semântica correta para o leitor de tela.
+------------------------------------------------------------------ */
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Botão "Voltar" — outline, menor destaque visual */
+.quiz-nav__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-primary);
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: 0.65rem 1.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.quiz-nav__back:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Botão "Continuar" / "Finalizar" — sólido, destaque visual maior */
+.quiz-nav__next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: 0.65rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.quiz-nav__next:hover {
+  background-color: var(--color-primary-dk);
+  border-color: var(--color-primary-dk);
+}
+
+/* =============================================================================
+   RESPONSIVIDADE
+   Em telas menores, as duas colunas se empilham verticalmente.
+============================================================================= */
+@media (max-width: 768px) {
+  .quiz-container {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-main {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .quiz-nav {
+    flex-direction: column-reverse; /* "Continuar" aparece primeiro em mobile */
+  }
+
+  .quiz-nav__back,
+  .quiz-nav__next {
+    width: 100%;
+    justify-content: center;
+  }
+}
