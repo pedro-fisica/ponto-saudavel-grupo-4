@@ -53,12 +53,14 @@
   border: 1px solid #d1d5db;
   border-radius: 20px;
   font-size: 0.875rem;
-  outline: none;
   transition: border-color 0.2s;
 }
 
-.search-input:focus {
+/* Foco visível: remove outline padrão e usa borda colorida (acessível e visualmente integrado) */
+.search-input:focus-visible {
+  outline: none;
   border-color: #1e7d34;
+  box-shadow: 0 0 0 3px rgba(30, 125, 52, 0.25);
 }
 
 .search-icon {
