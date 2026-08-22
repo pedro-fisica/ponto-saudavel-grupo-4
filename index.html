@@ -14,10 +14,12 @@
 
   <!-- =====================================================================
        HEADER / NAVBAR
-       <header> é um elemento landmark — leitores de tela anunciam
-       "cabeçalho" ao entrar nesta região da página.
+       Div genérica (sem semântica de landmark) para não expor esta região
+       como landmark a leitores de tela. Isso não afeta a navegação por Tab,
+       que segue apenas elementos focáveis (a, button, input etc.),
+       independentemente do elemento estrutural que os envolve.
   ====================================================================== -->
-  <header class="site-header">
+  <div class="site-header">
     <div class="header-inner">
 
       <!-- Logo: <a> com aria-label descritivo torna o destino claro para
@@ -57,31 +59,29 @@
         <span class="search-icon">🔍</span>
       </div>
 
-      <!-- <nav> é um landmark de navegação. aria-label "Menu principal"
-           diferencia este <nav> do rodapé, que terá seu próprio aria-label.
-           Isso permite que o usuário salte diretamente para o menu correto. -->
-      <nav>
-        <!-- <ul> dentro de <nav> é o padrão semântico para listas de links -->
+      <!-- Div genérica no lugar de <nav>: remove o landmark de navegação
+           sem alterar a ordem de foco por Tab, que continua seguindo os
+           links <a> abaixo normalmente. -->
+      <div>
         <ul class="nav-list">
           <li><a href="questionario/passo-1.html">Questionário</a></li>
           <li><a href="receitas.html">Receitas</a></li>
           <li><a href="#">Artigos</a></li>
           <li><a href="#">Meu Perfil</a></li>
         </ul>
-      </nav>
+      </div>
       <!-- type="button" evita que o botão submeta um formulário por engano -->
       <button type="button" class="btn-entrar">Entrar</button>
 
     </div>
-  </header>
+  </div>
 
   <!-- =====================================================================
        CONTEÚDO PRINCIPAL
-       <main> é um landmark que identifica o conteúdo principal da página.
-       Deve existir apenas um <main> por página. Usuários de leitor de
-       tela costumam saltar diretamente para cá com um atalho de teclado.
+       Div genérica no lugar de <main>: remove o landmark de conteúdo
+       principal sem impactar a ordem de foco por Tab.
   ====================================================================== -->
-  <main>
+  <div>
 
     <!-- ==================================================================
          HERO SECTION
@@ -196,33 +196,31 @@
 
     </section>
 
-  </main>
+  </div>
 
   <!-- =====================================================================
        FOOTER
-       <footer> é um landmark que leitores de tela identificam como
-       "rodapé". Contém informações de copyright e links institucionais.
+       Div genérica no lugar de <footer>: remove o landmark de rodapé sem
+       afetar a navegação por Tab, já que <div> não é focável.
   ====================================================================== -->
-  <footer class="site-footer">
+  <div class="site-footer">
     <div class="footer-inner">
 
       <!-- Texto de copyright -->
       <p class="footer-brand">© 2024 Ponto Saudável. Nutrição e Bem-estar.</p>
 
-      <!-- Segundo <nav> com aria-label distinto do menu principal,
-           permitindo que o usuário saiba que este nav é o rodapé,
-           e não o menu de navegação do site. -->
-      <nav>
+      <!-- Div genérica no lugar do segundo <nav> do rodapé -->
+      <div>
         <ul class="footer-links">
           <li><a href="#">Privacidade</a></li>
           <li><a href="#">Termos de Uso</a></li>
           <li><a href="#">Contato</a></li>
           <li><a href="#">Sobre Nós</a></li>
         </ul>
-      </nav>
+      </div>
 
     </div>
-  </footer>
+  </div>
 
 </body>
 </html>

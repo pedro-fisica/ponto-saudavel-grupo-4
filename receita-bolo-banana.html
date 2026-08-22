@@ -16,9 +16,9 @@
 <body>
 
   <!-- Header reaproveitado da área logada, mantendo consistência entre páginas.
-       "Receitas" permanece com pois esta tela é um detalhe
-       dentro desse contexto de navegação. -->
-  <header class="site-header">
+       Div genérica no lugar de <header>: remove o landmark sem afetar a
+       navegação por Tab, que continua seguindo os links/botões abaixo. -->
+  <div class="site-header">
     <div class="header-inner">
       <a href="home-logada.html" class="logo">
         <img
@@ -44,7 +44,7 @@
         <span class="search-icon">🔍</span>
       </div>
 
-      <nav>
+      <div>
         <ul class="nav-list">
           <li><a href="home-logada.html">Home</a></li>
           <li><a href="questionario/passo-1.html">Questionário</a></li>
@@ -52,7 +52,7 @@
           <li><a href="#">Artigos</a></li>
           <li><a href="perfil.html">Meu Perfil</a></li>
         </ul>
-      </nav>
+      </div>
       <a href="perfil.html" class="user-avatar">
         <img
           src="https://placehold.co/40x40/1e7d34/white?text=L" alt=""
@@ -62,9 +62,9 @@
         />
       </a>
     </div>
-  </header>
+  </div>
 
-  <main class="receita-main">
+  <div class="receita-main">
     <!-- Link de navegação real para voltar ao contexto da listagem de receitas. -->
     <a href="receitas.html" class="voltar-receitas">
       <span>←</span>
@@ -212,21 +212,21 @@
         </table>
       </section>
     </article>
-  </main>
+  </div>
 
-  <footer class="site-footer">
+  <div class="site-footer">
     <div class="footer-inner">
       <p class="footer-brand">© 2024 Ponto Saudável. Nutrição e Bem-estar.</p>
-      <nav>
+      <div>
         <ul class="footer-links">
           <li><a href="#">Privacidade</a></li>
           <li><a href="#">Termos de Uso</a></li>
           <li><a href="#">Contato</a></li>
           <li><a href="#">Sobre Nós</a></li>
         </ul>
-      </nav>
+      </div>
     </div>
-  </footer>
+  </div>
 
 </body>
 </html>

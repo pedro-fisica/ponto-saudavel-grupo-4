@@ -14,10 +14,10 @@
 
   <!-- =====================================================================
        HEADER / NAVBAR — mesmo da Home e do questionário.
-       O item "Meu Perfil" recebe para sinalizar ao
-       leitor de tela qual seção está ativa no menu.
+       Div genérica no lugar de <header>, sem semântica de landmark; não
+       afeta a navegação por Tab, que segue apenas elementos focáveis.
   ====================================================================== -->
-  <header class="site-header">
+  <div class="site-header">
     <div class="header-inner">
 
       <a href="index.html" class="logo">
@@ -48,7 +48,7 @@
         <span class="search-icon">🔍</span>
       </div>
 
-      <nav>
+      <div>
         <ul class="nav-list">
           <li><a href="questionario/passo-1.html">Questionário</a></li>
           <li><a href="receitas.html">Receitas</a></li>
@@ -58,18 +58,18 @@
                desnecessariamente para onde já está -->
           <li><a href="perfil.html">Meu Perfil</a></li>
         </ul>
-      </nav>
+      </div>
       <button type="button" class="btn-entrar">Entrar</button>
 
     </div>
-  </header>
+  </div>
 
   <!-- =====================================================================
        CONTEÚDO PRINCIPAL
-       <main> é um landmark; leitores de tela oferecem atalho para cá.
-       Deve existir apenas um <main> por página.
+       Div genérica no lugar de <main>: remove o landmark de conteúdo
+       principal sem impactar a ordem de foco por Tab.
   ====================================================================== -->
-  <main>
+  <div>
 
     <div class="perfil-page">
       <div class="perfil-card">
@@ -185,24 +185,25 @@
       </div>
     </div>
 
-  </main>
+  </div>
 
   <!-- =====================================================================
        FOOTER — mesmo da Home e do questionário.
+       Div genérica no lugar de <footer>: remove o landmark de rodapé.
   ====================================================================== -->
-  <footer class="site-footer">
+  <div class="site-footer">
     <div class="footer-inner">
       <p class="footer-brand">© 2024 Ponto Saudável. Nutrição e Bem-estar.</p>
-      <nav>
+      <div>
         <ul class="footer-links">
           <li><a href="#">Privacidade</a></li>
           <li><a href="#">Termos de Uso</a></li>
           <li><a href="#">Contato</a></li>
           <li><a href="#">Sobre Nós</a></li>
         </ul>
-      </nav>
+      </div>
     </div>
-  </footer>
+  </div>
 
 </body>
 </html>
