@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <!-- Viewport garante responsividade em dispositivos móveis -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Questionário — Passo 1 de 3 | Ponto Saudável</title>
   <!-- Meta description ajuda motores de busca e contextualizadores de página -->
-  <meta name="description" content="Responda ao questionário e receba recomendações personalizadas de alimentação saudável. Passo 1 de 3." />
+  <meta name="description" content="Responda ao questionário e receba recomendações personalizadas de alimentação saudável. Passo 1 de 3.">
   <!-- Estilos base da Home — reutilizamos a mesma paleta, tipografia e componentes -->
-  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/styles.css">
   <!-- Estilos específicos do questionário — componentes de layout de duas colunas, cards de opção e barra de progresso -->
-  <link rel="stylesheet" href="../css/questionario.css" />
+  <link rel="stylesheet" href="../css/questionario.css">
   <script src="../js/accessibility.js"></script>
 </head>
 <body>
@@ -31,8 +31,7 @@
           src="https://placehold.co/40x40/1e7d34/white?text=PS"
           alt="Logotipo Ponto Saudável"
           width="40"
-          height="40"
-        />
+          height="40">
         <span>Ponto Saudável</span>
       </a>
 
@@ -52,8 +51,7 @@
           id="busca"
           type="search"
           placeholder="Buscar receitas, artigos..."
-          class="search-input"
-        />
+          class="search-input">
         <span class="search-icon" aria-hidden="true">🔍</span>
       </div>
 
@@ -126,8 +124,7 @@
               aria-valuemin="0"
               aria-valuemax="100"
               aria-label="Progresso do questionário: passo 1 de 3"
-              class="quiz-progress__bar-track"
-            >
+              class="quiz-progress__bar-track">
               <!-- Barra preenchida a ~33% (passo 1 de 3) -->
               <div class="quiz-progress__bar-fill" style="width: 33%;"></div>
             </div>
@@ -143,8 +140,7 @@
               alt="Mesa com alimentos saudáveis: frutas, legumes e grãos coloridos dispostos em tigelas"
               class="quiz-sidebar__image"
               width="360"
-              height="240"
-            />
+              height="240">
             <!-- Legenda sobreposta à imagem — tratada como decorativa
                  (aria-hidden) pois a imagem já tem alt descritivo e
                  a legenda é citação de apoio, não informação essencial.
@@ -196,8 +192,7 @@
                 type="radio"
                 name="refeicoes"
                 value="apenas-1"
-                class="quiz-option__input"
-              />
+                class="quiz-option__input">
               <!-- aria-hidden no indicador visual: é puramente decorativo;
                    a semântica já está no <input> + <label> acima. -->
               <span class="quiz-option__indicator" aria-hidden="true"></span>
@@ -209,8 +204,7 @@
                 type="radio"
                 name="refeicoes"
                 value="ate-3"
-                class="quiz-option__input"
-              />
+                class="quiz-option__input">
               <span class="quiz-option__indicator" aria-hidden="true"></span>
               <span>Até 3 refeições</span>
             </label>
@@ -220,8 +214,7 @@
                 type="radio"
                 name="refeicoes"
                 value="mais-de-3"
-                class="quiz-option__input"
-              />
+                class="quiz-option__input">
               <span class="quiz-option__indicator" aria-hidden="true"></span>
               <span>Mais de 3 refeições</span>
             </label>
@@ -229,7 +222,7 @@
           </fieldset>
 
           <!-- Linha divisória separando as opções dos botões de navegação -->
-          <hr class="quiz-divider" />
+          <hr class="quiz-divider">
 
           <!-- Navegação entre passos via links <a href>
                Usamos <a> e não <button> pois a ação é navegar para outro

@@ -2,14 +2,14 @@
 <!-- Linguagem: português do Brasil -->
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <!-- Viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ponto Saudável — Bem-vindo, Lucas!</title>
   <!-- Meta description: resumo da página para motores de busca e leitores de tela -->
-  <meta name="description" content="Página inicial do Ponto Saudável para usuário autenticado, com recomendações personalizadas de alimentação." />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/home-logada.css" />
+  <meta name="description" content="Página inicial do Ponto Saudável para usuário autenticado, com recomendações personalizadas de alimentação.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/home-logada.css">
   <script src="js/accessibility.js"></script>
 </head>
 <body>
@@ -32,15 +32,15 @@
           src="https://placehold.co/40x40/1e7d34/white?text=PS"
           alt="Logotipo Ponto Saudável"
           width="40"
-          height="40"
-        />
+          height="40">
         <span>Ponto Saudável</span>
       </a>
 
       <!-- Indicador de localização: aria-hidden no emoji evita verbalização
            desnecessária pelo leitor de tela -->
-      <div class="location" aria-label="Localização: São Paulo, SP">
+      <div class="location">
         <span aria-hidden="true">📍</span>
+        <span class="sr-only">Localização: </span>
         <span>São Paulo, SP</span>
       </div>
 
@@ -53,8 +53,7 @@
           id="busca"
           type="search"
           placeholder="Buscar receitas, artigos..."
-          class="search-input"
-        />
+          class="search-input">
         <!-- Ícone decorativo: aria-hidden evita verbalização redundante -->
         <span class="search-icon" aria-hidden="true">🔍</span>
       </div>
@@ -90,8 +89,7 @@
           alt="Foto de perfil de Lucas"
           width="40"
           height="40"
-          class="avatar-img"
-        />
+          class="avatar-img">
       </a>
 
     </div>
@@ -162,8 +160,7 @@
             alt="Tigela com salada colorida de legumes frescos, grãos e azeite"
             class="hero-img"
             width="560"
-            height="420"
-          />
+            height="420">
         </div>
 
       </div>
@@ -193,8 +190,7 @@
                 alt="Panquecas de aveia empilhadas com frutas vermelhas e mel"
                 class="card-receita-img"
                 width="480"
-                height="240"
-              />
+                height="240">
               <!-- Etiqueta sobre a imagem — aria-hidden porque a mesma
                    informação é transmitida no contexto do card (título,
                    descrição); duplicar no leitor de tela não agrega valor. -->
@@ -207,8 +203,7 @@
               <button
                 type="button"
                 class="btn-favoritar"
-                aria-label="Favoritar receita Panqueca de aveia e frutas"
-              >
+                aria-label="Favoritar receita Panqueca de aveia e frutas">
                 <!-- Ícone decorativo dentro do botão; o aria-label no
                      <button> já comunica a ação ao leitor de tela. -->
                 <span aria-hidden="true">♡</span>
@@ -266,8 +261,7 @@
               alt="Maçã vermelha fresca sobre fundo branco, simbolizando escolha por alimentos naturais"
               class="card-artigo-img"
               width="300"
-              height="160"
-            />
+              height="160">
 
             <a href="#" class="btn-secondary btn-artigo">Ler artigo (5 min)</a>
 
@@ -290,10 +284,7 @@
         <!-- Título visualmente menor — estilo, não hierarquia semântica -->
         <h2 id="atalhos-titulo" class="section-title section-title--sm">Acesso Rápido</h2>
 
-        <!-- role="list" em ul com list-style:none — compatibilidade com
-             VoiceOver/Safari que remove semântica de lista quando não há
-             marcadores visuais. -->
-        <ul class="atalhos-grid" role="list">
+        <ul class="atalhos-grid">
 
           <li>
             <!-- aria-label no link garante que o leitor de tela anuncie

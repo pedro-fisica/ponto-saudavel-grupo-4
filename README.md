@@ -76,7 +76,6 @@ Você também pode abrir `home-logada.html` diretamente no navegador para visual
 | `<article>` nos cards de receita e artigo | Conteúdo autocontido que faz sentido fora do contexto da página; `aria-label` no `<article>` nomeia cada um para leitores de tela que navegam por landmarks |
 | Ícones de metadados com `aria-hidden="true"` | Emojis de relógio e estrela são decorativos; o texto adjacente ("20 min", "Fácil") já comunica a informação completa — `aria-hidden` evita verbalização redundante |
 | `aria-label` nos links de atalho | Garante que o destino seja anunciado claramente mesmo quando o texto visível for curto (ex: "Todas Receitas", "Favoritos") |
-| `role="list"` na `<ul>` de atalhos | Compatibilidade com VoiceOver/Safari, que remove semântica de lista quando `list-style` é `none` |
 | Hierarquia de headings: `h1` → `h2` → `h3` | `h1`: "Olá, Lucas!" (título principal da página); `h2`: "Para Você Hoje" e "Acesso Rápido" (títulos de seção); `h3`: títulos dos cards de receita e artigo |
 | `:focus-visible` herdado de `styles.css` | Indicador de foco visível em todos os links e botões ao navegar por teclado |
 
