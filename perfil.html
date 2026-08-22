@@ -8,6 +8,7 @@
   <meta name="description" content="Crie seu perfil no Ponto Saudável e receba recomendações de alimentação personalizadas." />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/perfil.css" />
+  <script src="js/accessibility.js"></script>
 </head>
 <body>
 
@@ -60,6 +61,13 @@
           <li><a href="perfil.html" aria-current="page">Meu Perfil</a></li>
         </ul>
       </nav>
+
+      <!-- Controles de acessibilidade para alterar o tamanho do texto -->
+      <div class="accessibility-font-controls" role="group" aria-label="Controles de tamanho de texto">
+        <button type="button" class="btn-font-size" id="btn-font-decrease" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A-</button>
+        <button type="button" class="btn-font-size" id="btn-font-reset" aria-label="Redefinir tamanho da fonte" title="Tamanho normal">A</button>
+        <button type="button" class="btn-font-size" id="btn-font-increase" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
+      </div>
 
       <button type="button" class="btn-entrar">Entrar</button>
 
