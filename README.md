@@ -11,12 +11,14 @@ index.html                  ← Página inicial (Home — estado público/não l
 home-logada.html            ← Página inicial logada (pós-criação de perfil)
 perfil.html                 ← Tela "Meu Perfil" (criação de conta)
 receitas.html               ← Tela "Receitas" (grade de receitas com filtros)
+receita-bolo-banana.html    ← Detalhe da receita "Bolo de banana sem açúcar"
 css/
   styles.css                ← Estilos base (paleta, tipografia, header, footer, cards)
   questionario.css          ← Estilos do questionário (layout 2 colunas, cards de opção, barra de progresso)
   perfil.css                ← Estilos da tela de perfil (card central, campos com ícones, botão submit)
   home-logada.css           ← Estilos da home logada (banner sucesso, cards receita/artigo, atalhos)
   receitas.css              ← Estilos da tela de receitas (hero, filtros pill, grade de cards)
+  receita-detalhe.css       ← Estilos da página de detalhe da receita
 questionario/
   passo-1.html              ← Passo 1/3: Hábitos alimentares
   passo-2.html              ← Passo 2/3: Objetivo com alimentação saudável
@@ -163,9 +165,32 @@ O item **"Receitas"** no menu de navegação de todas as páginas também leva a
 
 ---
 
+## Página de detalhe da receita (`receita-bolo-banana.html`) — como acessar localmente
+
+Abra `receita-bolo-banana.html` diretamente no navegador, ou siga pelo fluxo:
+
+```
+home-logada.html → receitas.html → card "Bolo de banana sem açúcar" → detalhe da receita
+```
+
+Nesta etapa, apenas o card **"Bolo de banana sem açúcar"** tem link funcional para página própria; os demais cards de receita seguem como conteúdo estático.
+
+### Decisões de acessibilidade
+
+| Elemento / Técnica | Motivo |
+|---|---|
+| `<article>` envolvendo o conteúdo da receita | A receita é uma unidade autocontida (título, metadados, ingredientes, preparo e nutrição) e faz sentido isoladamente; leitores de tela anunciam a região como artigo |
+| Link "Voltar para receitas" como `<a href>` | É uma ação de navegação para outra página, então usamos link semântico em vez de botão |
+| Botão de compartilhar só com ícone e `aria-label` | Sem rótulo explícito, o leitor de tela anunciaria apenas "botão"; o `aria-label` define a ação de forma clara |
+| Ícones de metadados com `aria-hidden="true"` | Relógio/talheres/pessoas funcionam como apoio visual; o texto de cada card já comunica totalmente o dado |
+| Lista de preparo como `<ol>` mesmo com círculos customizados | Preserva a semântica de sequência obrigatória dos passos; tecnologias assistivas anunciam ordem e total de etapas |
+| Informações nutricionais em `<table>` com cabeçalhos de coluna | Dados comparáveis por categoria (calorias, carboidratos, proteínas, gorduras) têm estrutura tabular; isso melhora a associação cabeçalho→valor para leitores de tela |
+| Hierarquia de títulos (`h1` na receita, `h2` nas seções) | Mantém navegação por headings previsível para auditoria (axe/WAVE/Lighthouse) e para usuários de leitores de tela |
+
+---
+
 
 
 - HTML5 semântico
 - CSS3 (custom properties, grid, flexbox, `:focus-visible`, media queries)
 - Sem JavaScript, sem frameworks, sem dependências externas
-

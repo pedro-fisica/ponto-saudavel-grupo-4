@@ -274,6 +274,31 @@
   line-height: 1.3;
 }
 
+/* Link do título no card de receita detalhada:
+   mantém a aparência de heading, mas fornece navegação real para o detalhe. */
+.receita-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.receita-card-link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.receita-card-cta {
+  margin-top: 0.15rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.receita-card-cta:hover {
+  text-decoration: underline;
+}
+
 /* .card-meta e .meta-item já definidos em home-logada.css — reutilizados */
 
 /* =============================================================================

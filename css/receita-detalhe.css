@@ -1,0 +1,304 @@
+/* =============================================================================
+   PONTO SAUDÁVEL — Estilos da página de detalhe de receita
+   Página: receita-bolo-banana.html
+   Reaproveita tokens do styles.css e padrões visuais das demais telas.
+============================================================================= */
+
+.receita-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.voltar-receitas {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 1.25rem;
+}
+
+.voltar-receitas:hover {
+  text-decoration: underline;
+}
+
+.receita-artigo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.receita-header {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.receita-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.receita-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.7rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(30, 125, 52, 0.3);
+  background-color: rgba(30, 125, 52, 0.09);
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.receita-titulo {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.receita-descricao {
+  color: var(--color-text-muted);
+  max-width: 60ch;
+  margin-bottom: 1.25rem;
+}
+
+.receita-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.receita-meta-card {
+  background-color: #f8f8fc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.85rem;
+}
+
+.receita-meta-rotulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  margin-bottom: 0.15rem;
+}
+
+.receita-meta-valor {
+  font-weight: 700;
+}
+
+.receita-acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-salvar-receita,
+.btn-compartilhar-receita {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-family);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-salvar-receita {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  padding: 0.65rem 1.1rem;
+}
+
+.btn-salvar-receita:hover {
+  background-color: var(--color-primary-dk);
+  border-color: var(--color-primary-dk);
+}
+
+.btn-compartilhar-receita {
+  width: 2.6rem;
+  height: 2.6rem;
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-compartilhar-receita:hover {
+  border-color: var(--color-primary);
+  background-color: rgba(30, 125, 52, 0.08);
+}
+
+.receita-imagem-wrapper {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.receita-imagem {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.receita-conteudo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.receita-secao {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  background-color: var(--color-white);
+}
+
+.receita-secao-titulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.85rem;
+}
+
+.ingredientes-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ingredientes-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.ingredientes-lista li span {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Numeramos no CSS para manter o <ol> semântico, mas com aparência de círculo. */
+.preparo-lista {
+  counter-reset: preparo-etapa;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.preparo-lista li {
+  counter-increment: preparo-etapa;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.65rem;
+}
+
+.preparo-lista li::before {
+  content: counter(preparo-etapa);
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: rgba(30, 125, 52, 0.12);
+  color: var(--color-primary);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.05rem;
+}
+
+.nutricao-secao {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: #f8f8fc;
+  padding: 1.25rem;
+  display: grid;
+  grid-template-columns: minmax(210px, 1fr) 2fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nutricao-titulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.15rem;
+}
+
+.nutricao-subtitulo {
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+.nutricao-tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.nutricao-tabela td {
+  text-align: center;
+  padding: 0.3rem 0.5rem;
+}
+
+.nutricao-valor {
+  display: block;
+  font-weight: 800;
+  font-size: 1.4rem;
+  line-height: 1.1;
+}
+
+.nutricao-rotulo {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 992px) {
+  .receita-header,
+  .receita-conteudo-grid,
+  .nutricao-secao {
+    grid-template-columns: 1fr;
+  }
+
+  .receita-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .receita-imagem {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 640px) {
+  .receita-main {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .nutricao-tabela td {
+    display: block;
+    padding: 0.35rem 0;
+  }
+}

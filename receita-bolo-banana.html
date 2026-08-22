@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bolo de banana sem açúcar — Ponto Saudável</title>
+  <meta
+    name="description"
+    content="Detalhes da receita de bolo de banana sem açúcar: ingredientes, modo de preparo e informações nutricionais."
+  />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/home-logada.css" />
+  <link rel="stylesheet" href="css/receita-detalhe.css" />
+</head>
+<body>
+
+  <!-- Header reaproveitado da área logada, mantendo consistência entre páginas.
+       "Receitas" permanece com aria-current="page" pois esta tela é um detalhe
+       dentro desse contexto de navegação. -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="home-logada.html" class="logo" aria-label="Ponto Saudável — página inicial">
+        <img
+          src="https://placehold.co/40x40/1e7d34/white?text=PS"
+          alt="Logotipo Ponto Saudável"
+          width="40"
+          height="40"
+        />
+        <span>Ponto Saudável</span>
+      </a>
+
+      <div class="location" aria-label="Localização: São Paulo, SP">
+        <span aria-hidden="true">📍</span>
+        <span>São Paulo, SP</span>
+      </div>
+
+      <div class="search-wrapper" role="search">
+        <label for="busca-header" class="sr-only">Buscar receitas e artigos</label>
+        <input
+          id="busca-header"
+          type="search"
+          placeholder="Buscar receitas, artigos..."
+          class="search-input"
+        />
+        <span class="search-icon" aria-hidden="true">🔍</span>
+      </div>
+
+      <nav aria-label="Menu principal">
+        <ul class="nav-list">
+          <li><a href="home-logada.html">Home</a></li>
+          <li><a href="questionario/passo-1.html">Questionário</a></li>
+          <li><a href="receitas.html" aria-current="page">Receitas</a></li>
+          <li><a href="#">Artigos</a></li>
+          <li><a href="perfil.html">Meu Perfil</a></li>
+        </ul>
+      </nav>
+
+      <a href="perfil.html" class="user-avatar" aria-label="Perfil de Lucas — acessar minha conta">
+        <img
+          src="https://placehold.co/40x40/1e7d34/white?text=L"
+          alt="Foto de perfil de Lucas"
+          width="40"
+          height="40"
+          class="avatar-img"
+        />
+      </a>
+    </div>
+  </header>
+
+  <main class="receita-main">
+    <!-- Link de navegação real para voltar ao contexto da listagem de receitas. -->
+    <a href="receitas.html" class="voltar-receitas">
+      <span aria-hidden="true">←</span>
+      Voltar para receitas
+    </a>
+
+    <!-- <article> representa uma unidade de conteúdo autocontida (a receita),
+         adequada para navegação por landmarks e para leitura isolada. -->
+    <article class="receita-artigo" aria-labelledby="receita-titulo">
+      <header class="receita-header">
+        <div class="receita-intro">
+          <div class="receita-badges" aria-label="Categorias da receita">
+            <span class="receita-badge">Sem Açúcar</span>
+            <span class="receita-badge">Café da Manhã</span>
+          </div>
+
+          <h1 id="receita-titulo" class="receita-titulo">Bolo de banana sem açúcar</h1>
+
+          <p class="receita-descricao">
+            Uma opção deliciosa e saudável para o seu café da manhã ou lanche da tarde. Feito apenas
+            com ingredientes naturais, utilizando o doce da própria fruta.
+          </p>
+
+          <!-- Ícones dos metadados são decorativos: o texto já transmite o dado
+               completo ("Tempo", "Dificuldade", "Porções"), então usamos
+               aria-hidden para evitar redundância na leitura por voz. -->
+          <div class="receita-meta-grid">
+            <div class="receita-meta-card">
+              <p class="receita-meta-rotulo"><span aria-hidden="true">🕒</span> Tempo</p>
+              <p class="receita-meta-valor">30 min</p>
+            </div>
+            <div class="receita-meta-card">
+              <p class="receita-meta-rotulo"><span aria-hidden="true">🍴</span> Dificuldade</p>
+              <p class="receita-meta-valor">Fácil</p>
+            </div>
+            <div class="receita-meta-card">
+              <p class="receita-meta-rotulo"><span aria-hidden="true">👥</span> Porções</p>
+              <p class="receita-meta-valor">8 porções</p>
+            </div>
+          </div>
+
+          <div class="receita-acoes">
+            <button type="button" class="btn-salvar-receita">
+              <span aria-hidden="true">♡</span>
+              Salvar Receita
+            </button>
+
+            <!-- Botão somente com ícone precisa de nome acessível explícito:
+                 sem aria-label, leitores de tela anunciariam apenas "botão",
+                 sem contexto da ação de compartilhar. -->
+            <button type="button" class="btn-compartilhar-receita" aria-label="Compartilhar receita">
+              <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="receita-imagem-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=900&auto=format&fit=crop"
+            alt="Bolo de banana sem açúcar fatiado em prato branco com textura macia"
+            class="receita-imagem"
+            width="900"
+            height="640"
+          />
+        </div>
+      </header>
+
+      <div class="receita-conteudo-grid">
+        <section class="receita-secao" aria-labelledby="ingredientes-titulo">
+          <h2 id="ingredientes-titulo" class="receita-secao-titulo">
+            <span aria-hidden="true">🧺</span>
+            Ingredientes
+          </h2>
+          <ul class="ingredientes-lista">
+            <li><span aria-hidden="true">✓</span>3 bananas bem maduras (nanica ou prata)</li>
+            <li><span aria-hidden="true">✓</span>2 ovos</li>
+            <li><span aria-hidden="true">✓</span>1 xícara de aveia em flocos (finos ou grossos)</li>
+            <li><span aria-hidden="true">✓</span>1 colher de sopa de fermento em pó</li>
+            <li><span aria-hidden="true">✓</span>1 colher de chá de canela em pó</li>
+            <li><span aria-hidden="true">✓</span>1/2 xícara de uvas-passas (opcional)</li>
+          </ul>
+        </section>
+
+        <section class="receita-secao" aria-labelledby="preparo-titulo">
+          <h2 id="preparo-titulo" class="receita-secao-titulo">
+            <span aria-hidden="true">👩‍🍳</span>
+            Modo de Preparo
+          </h2>
+
+          <!-- Mantemos <ol> para preservar semântica de sequência obrigatória.
+               Mesmo com círculos customizados no CSS, leitores de tela continuam
+               anunciando posição de cada passo (1 de 6, 2 de 6, etc.). -->
+          <ol class="preparo-lista">
+            <li>Amasse bem as bananas maduras em uma tigela até formar um purê homogêneo.</li>
+            <li>Adicione os ovos à tigela com as bananas e misture bem com a ajuda de um garfo ou fouet.</li>
+            <li>Acrescente a aveia em flocos e a canela, misturando até incorporar todos os ingredientes.</li>
+            <li>Por último, adicione o fermento em pó e as uvas-passas, mexendo delicadamente apenas para misturar.</li>
+            <li>Despeje a massa em uma forma pequena (untada com óleo de coco ou manteiga e polvilhada com aveia).</li>
+            <li>Asse em forno preaquecido a 180°C por aproximadamente 25 a 30 minutos, ou até que um palito saia limpo ao ser inserido no centro.</li>
+          </ol>
+        </section>
+      </div>
+
+      <section class="nutricao-secao" aria-labelledby="nutricao-titulo">
+        <div class="nutricao-intro">
+          <h2 id="nutricao-titulo" class="nutricao-titulo">
+            <span aria-hidden="true">📊</span>
+            Informações Nutricionais
+          </h2>
+          <p class="nutricao-subtitulo">Por porção (1 fatia)</p>
+        </div>
+
+        <!-- Optamos por <table> porque os dados são tabulares (métricas em
+             colunas com valores correspondentes), facilitando navegação por
+             célula e associação cabeçalho→valor em tecnologias assistivas. -->
+        <table class="nutricao-tabela">
+          <caption class="sr-only">Informações nutricionais por porção de uma fatia</caption>
+          <thead class="sr-only">
+            <tr>
+              <th scope="col">Calorias</th>
+              <th scope="col">Carboidratos</th>
+              <th scope="col">Proteínas</th>
+              <th scope="col">Gorduras</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="nutricao-valor">115 KCAL</span>
+                <span class="nutricao-rotulo">Calorias</span>
+              </td>
+              <td>
+                <span class="nutricao-valor">18g</span>
+                <span class="nutricao-rotulo">Carboidratos</span>
+              </td>
+              <td>
+                <span class="nutricao-valor">4g</span>
+                <span class="nutricao-rotulo">Proteínas</span>
+              </td>
+              <td>
+                <span class="nutricao-valor">3g</span>
+                <span class="nutricao-rotulo">Gorduras</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">© 2024 Ponto Saudável. Nutrição e Bem-estar.</p>
+      <nav aria-label="Links do rodapé">
+        <ul class="footer-links">
+          <li><a href="#">Privacidade</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
