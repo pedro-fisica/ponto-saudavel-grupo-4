@@ -279,6 +279,10 @@
           ============================================================== -->
           <article class="receita-card">
             <div class="receita-card-img-wrapper">
+              <a
+                href="receita-bolo-banana.html"
+                aria-label="Abrir detalhes da receita Bolo de banana sem açúcar"
+              >
               <!-- alt descritivo: descreve o conteúdo visual da imagem,
                    não o nome da receita (que já aparece no h3 abaixo).
                    Evita redundância como alt="Bolo de banana sem açúcar" que
@@ -293,6 +297,7 @@
                 height="220"
                 loading="lazy"
               />
+              </a>
               <!-- Botão de favoritar:
                    - Deve ser <button> real (não <div> ou <span> clicável)
                      para ser focável por teclado e anunciado como botão.
@@ -325,7 +330,11 @@
               <!-- h3: terceiro nível (h1 página → h2 seção → h3 receita).
                    Usar h3 aqui é correto — não pular para h4 ou usar h2,
                    que causaria conflito com o título da seção. -->
-              <h3 class="receita-card-titulo">Bolo de banana sem açúcar</h3>
+              <h3 class="receita-card-titulo">
+                <a href="receita-bolo-banana.html" class="receita-card-link">
+                  Bolo de banana sem açúcar
+                </a>
+              </h3>
 
               <!-- Metadados de tempo e dificuldade:
                    Os ícones (relógio, talheres) são DECORATIVOS aqui porque
@@ -341,6 +350,10 @@
                   <span aria-hidden="true">🍴</span> Fácil
                 </span>
               </div>
+
+              <!-- Nesta iteração somente esta receita possui página de detalhe.
+                   Os demais cards permanecem estáticos até as próximas telas. -->
+              <a href="receita-bolo-banana.html" class="receita-card-cta">Ver receita</a>
             </div>
           </article>
 
