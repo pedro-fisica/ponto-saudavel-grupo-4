@@ -1,0 +1,215 @@
+/* =============================================================================
+   PONTO SAUDÁVEL — Estilos da tela "Meu Perfil"
+   Complementa css/styles.css com os componentes específicos do
+   formulário de criação de perfil (card central, campos com ícones,
+   botão de submissão).
+============================================================================= */
+
+/* =============================================================================
+   LAYOUT DA PÁGINA
+   Fundo lilás claro idêntico ao da hero e do questionário, mantendo
+   consistência visual entre as telas do site.
+============================================================================= */
+.perfil-page {
+  background-color: var(--color-hero-bg);
+  min-height: calc(100vh - 60px);
+  padding: 3rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* =============================================================================
+   CARD CENTRAL
+   Card único com largura máxima, centralizado na tela.
+   Cantos arredondados e sombra suave reutilizam o padrão já definido
+   para os cards da Home e do questionário.
+============================================================================= */
+.perfil-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* =============================================================================
+   ÍCONE DE PERFIL
+   Círculo decorativo no topo do card.
+   Mantém o mesmo padrão visual dos ícones circulares dos cards da Home.
+============================================================================= */
+.perfil-avatar {
+  width: 5rem;
+  height: 5rem;
+  background-color: rgba(30, 125, 52, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  flex-shrink: 0;
+}
+
+/* =============================================================================
+   HEADING E DESCRIÇÃO
+============================================================================= */
+.perfil-title {
+  font-size: clamp(1.4rem, 4vw, 1.875rem);
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.perfil-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 340px;
+  line-height: 1.5;
+}
+
+/* =============================================================================
+   FORMULÁRIO
+============================================================================= */
+.perfil-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+/* ------------------------------------------------------------------
+   Grupo de campo: label acima do input
+   O <label> aparece acima do <input> conforme o mockup — padrão
+   recomendado de usabilidade que facilita leitura e amplia a área
+   de toque do rótulo.
+------------------------------------------------------------------ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* O <label> associado via for/id garante que leitores de tela anunciem
+   o rótulo correto ao focar o campo, independentemente do placeholder. */
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Input base */
+.form-input {
+  width: 100%;
+  padding: 0.65rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background-color: #f8f8fc;
+  transition: border-color 0.2s;
+  /* :focus-visible global (em styles.css) já cobre o contorno de foco */
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+  background-color: var(--color-white);
+  outline: none; /* contorno via :focus-visible global */
+}
+
+/* ------------------------------------------------------------------
+   Wrapper para campos com ícones internos
+   Posicionamento relativo permite sobrepor ícones ao input.
+------------------------------------------------------------------ */
+.input-icon-wrapper {
+  position: relative;
+}
+
+/* Ícones decorativos dentro do campo (envelope, cadeado, olho).
+   aria-hidden="true" no HTML remove-os da árvore de acessibilidade
+   — não acrescentam informação além do que o label já comunica. */
+.input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  pointer-events: none; /* cliques passam para o input */
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+
+.input-icon--left {
+  left: 0.75rem;
+}
+
+.input-icon--right {
+  right: 0.75rem;
+}
+
+/* Ajustes de padding para acomodar os ícones sem sobrepor o texto */
+.form-input--with-icon-left {
+  padding-left: 2.5rem;
+}
+
+.form-input--with-icon-right {
+  padding-right: 2.5rem;
+}
+
+/* =============================================================================
+   BOTÃO "CRIAR PERFIL"
+   Verde sólido, largura total, tamanho grande — maior destaque visual,
+   indicando a ação principal da tela.
+   type="submit" é o padrão semântico correto para envio de formulário.
+============================================================================= */
+.btn-criar-perfil {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 0.5rem;
+  /* :focus-visible global garante contorno de foco visível ao navegar
+     pelo teclado, sem poluir a interface para usuários de mouse */
+}
+
+.btn-criar-perfil:hover {
+  background-color: var(--color-primary-dk);
+}
+
+/* =============================================================================
+   RODAPÉ DO CARD
+   Texto pequeno informativo com ícone de cadeado decorativo.
+   Cor levemente atenuada (var(--color-text-muted)) — pode apresentar
+   contraste próximo ao limite de 4.5:1 dependendo do fundo.
+============================================================================= */
+.perfil-footer-note {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+/* =============================================================================
+   RESPONSIVIDADE
+============================================================================= */
+@media (max-width: 520px) {
+  .perfil-card {
+    padding: 2rem 1.25rem;
+  }
+}

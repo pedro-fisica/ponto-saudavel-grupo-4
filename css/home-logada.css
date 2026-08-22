@@ -1,0 +1,355 @@
+/* =============================================================================
+   PONTO SAUDÁVEL — Estilos da Home logada (home-logada.html)
+   Complementa css/styles.css com os componentes específicos desta tela:
+   banner de sucesso, cards de receita/artigo e grade de atalhos.
+   Reutiliza ao máximo as variáveis e classes base já definidas em styles.css.
+============================================================================= */
+
+/* =============================================================================
+   BANNER DE SUCESSO
+   Faixa verde claro com ícone de check — confirma a criação do perfil.
+   A cor de fundo e o texto precisam ter contraste mínimo 4.5:1 (WCAG AA).
+   Texto #155724 sobre fundo #d4edda atinge contraste ≈ 7:1 — aprovado.
+============================================================================= */
+.success-banner {
+  background-color: #d4edda;
+  color: #155724;
+  border-bottom: 1px solid #b8dfc4;
+  padding: 0.875rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.success-icon {
+  font-size: 1.1rem;
+}
+
+/* =============================================================================
+   AVATAR DO USUÁRIO (header)
+   Substitui o botão "Entrar" no estado logado. É um <a> (link para o perfil).
+   Borda circular mantém o estilo das fotos de perfil convencionais.
+============================================================================= */
+.user-avatar {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  /* Foco visível via :focus-visible global do styles.css já cobre este link */
+}
+
+.avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  object-fit: cover;
+  display: block;
+}
+
+/* =============================================================================
+   HERO LOGADO — variação da hero da Home pública
+   Mantém fundo lilás (#f5f4fb), tipografia e layout, mas sem badge e com
+   menos padding lateral pois a mensagem de boas-vindas é mais concisa.
+============================================================================= */
+.hero--logado {
+  padding: 3rem 1.5rem;
+}
+
+/* =============================================================================
+   CONTAINERS DE SEÇÃO
+   Largura máxima e centralização reutilizados em Para Você Hoje e Atalhos.
+============================================================================= */
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =============================================================================
+   TÍTULO DE SEÇÃO
+============================================================================= */
+.section-title {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: var(--color-text);
+  margin-bottom: 1.75rem;
+}
+
+.section-title--sm {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+}
+
+/* =============================================================================
+   SEÇÃO "PARA VOCÊ HOJE"
+============================================================================= */
+.para-voce {
+  padding: 3rem 1.5rem;
+  background-color: var(--color-white);
+}
+
+/* Grid assimétrico: card de receita maior (2 partes) + artigo menor (1 parte) */
+.para-voce-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* =============================================================================
+   CARD DE RECEITA (maior, à esquerda)
+============================================================================= */
+.card-receita {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card-receita:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.card-receita-image-wrapper {
+  position: relative;
+}
+
+.card-receita-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Etiqueta de categoria sobreposta à imagem */
+.card-tag {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Botão de favoritar — posicionado no canto superior direito da imagem */
+.btn-favoritar {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: color 0.2s, border-color 0.2s;
+  /* :focus-visible do styles.css global cobre o contorno de foco aqui */
+}
+
+.btn-favoritar:hover {
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
+.card-receita-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.card-receita-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.card-receita-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* Metadados: tempo e dificuldade */
+.card-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Indicador "baseado no seu questionário" */
+.card-baseado {
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* =============================================================================
+   CARD DE ARTIGO (menor, à direita)
+============================================================================= */
+.card-artigo {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card-artigo:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Rótulo de categoria "LEITURA SUGERIDA" */
+.card-artigo-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.card-artigo-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.card-artigo-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+.card-artigo-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+/* Botão outline "Ler artigo" — reutiliza .btn-secondary do styles.css;
+   sobrescrita apenas do tamanho para caber no card menor. */
+.btn-artigo {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  align-self: flex-start;
+  /* text-decoration:none já definido em .btn-secondary */
+}
+
+/* =============================================================================
+   GRADE DE ATALHOS
+   4 cards pequenos lado a lado com ícone circular + rótulo.
+   São <a> (links) porque todos levam para outra página/seção —
+   uso semanticamente correto; <button> seria adequado apenas para ações
+   que não navegam para fora da página atual.
+============================================================================= */
+.atalhos {
+  padding: 2.5rem 1.5rem 3rem;
+  background-color: var(--color-hero-bg); /* fundo lilás claro — consistência visual */
+}
+
+.atalhos-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 720px;
+}
+
+.atalho-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  transition: box-shadow 0.2s, transform 0.2s, color 0.2s;
+  box-shadow: var(--shadow-card);
+}
+
+.atalho-card:hover {
+  color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Ícone circular dentro do card de atalho — estilo consistente
+   com os ícones dos cards de funcionalidades da Home pública. */
+.atalho-icon {
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(30, 125, 52, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.atalho-label {
+  line-height: 1.2;
+}
+
+/* =============================================================================
+   RESPONSIVIDADE
+============================================================================= */
+@media (max-width: 768px) {
+  /* Grid de Para Você Hoje: empilha os dois cards em mobile */
+  .para-voce-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Imagem do card de receita menor em mobile */
+  .card-receita-img {
+    height: 160px;
+  }
+
+  /* Grade de atalhos: 2 colunas em mobile */
+  .atalhos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
