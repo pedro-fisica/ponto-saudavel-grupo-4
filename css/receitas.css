@@ -1,0 +1,347 @@
+/* =============================================================================
+   PONTO SAUDÁVEL — Estilos da página de Receitas (receitas.html)
+   Complementa css/styles.css com os componentes específicos desta tela:
+   hero de título, barra de filtros, filtros pill, grade de cards e botão
+   de paginação. Reutiliza ao máximo as variáveis e classes base de styles.css.
+============================================================================= */
+
+/* =============================================================================
+   HERO DE TÍTULO DA PÁGINA DE RECEITAS
+   Fundo lilás claro (#f5f4fb) reutilizado da hero da Home para manter
+   consistência visual entre as telas do projeto.
+============================================================================= */
+.receitas-hero {
+  background-color: var(--color-hero-bg);
+  padding: 3rem 1.5rem 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.receitas-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* h1 da página de receitas — tamanho fluido entre mobile e desktop */
+.receitas-titulo {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.receitas-subtitulo {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+}
+
+/* =============================================================================
+   SEÇÃO DE FILTROS E BUSCA
+   Fundo branco, padding generoso para respiração visual.
+   A separação visual entre hero (lilás) e filtros (branco) ajuda usuários
+   a perceber a mudança de contexto.
+============================================================================= */
+.filtros-secao {
+  background-color: var(--color-white);
+  padding: 2rem 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filtros-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Linha que agrupa busca e seletor de categoria lado a lado */
+.busca-categoria-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* =============================================================================
+   CAMPO DE BUSCA DE RECEITAS
+   Reutiliza .search-input e .search-icon do styles.css; adiciona apenas
+   o posicionamento relativo necessário para o ícone sobreposto.
+============================================================================= */
+.busca-receitas-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+/* Faz o campo de busca específico de receitas crescer mais que o do header */
+.busca-receitas-input {
+  padding-left: 1rem; /* mais espaço à esquerda sem ícone de lupa */
+  padding-right: 2.5rem;
+  font-size: 0.95rem;
+}
+
+/* =============================================================================
+   SELETOR DE CATEGORIA (<select> nativo)
+   Estilização visual do <select> para parecer com o dropdown do mockup,
+   sem perder a acessibilidade nativa do elemento.
+
+   Optamos por <select> nativo em vez de um dropdown customizado com divs e
+   ARIA, porque:
+   1. Funciona com teclado nativamente (setas, Enter, Esc).
+   2. É anunciado corretamente por todos os leitores de tela sem ARIA extra.
+   3. Em mobile, abre o seletor nativo do sistema operacional — experiência
+      já familiar ao usuário.
+   A seta visual (▼) é meramente decorativa e está aria-hidden.
+============================================================================= */
+.categoria-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  min-width: 200px;
+}
+
+.select-categoria {
+  width: 100%;
+  appearance: none; /* remove estilo nativo do navegador para aplicar o nosso */
+  -webkit-appearance: none;
+  padding: 0.5rem 2.5rem 0.5rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  font-family: var(--font-family);
+  background-color: #f8f8fc;
+  color: var(--color-text);
+  cursor: pointer;
+  /* :focus-visible global do styles.css cuida do contorno de foco */
+}
+
+/* Seta decorativa do select — posicionada via position:absolute no wrapper */
+.select-arrow {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  pointer-events: none; /* garante que cliques passem para o select */
+}
+
+/* =============================================================================
+   FILTROS PILL / TAGS
+   Linha de botões toggle com visual de pílulas.
+
+   Os botões usam aria-pressed (declarado no HTML) para comunicar estado.
+   O CSS reforça visualmente o estado ativo: cor de fundo verde sólido
+   e texto branco. Importante: o estado não deve ser comunicado APENAS
+   pela cor (daltônicos podem não perceber a diferença de verde/cinza),
+   por isso aria-pressed no HTML é indispensável para acessibilidade real.
+============================================================================= */
+.filtros-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  cursor: pointer;
+  border: 2px solid var(--color-border);
+  background-color: var(--color-white);
+  color: var(--color-text-muted);
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  /* :focus-visible global já cuida do contorno de foco por teclado */
+}
+
+.pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: rgba(30, 125, 52, 0.06);
+}
+
+/* Estado ativo (aria-pressed="true" ou classe .pill--ativo).
+   Usamos AMBOS seletor de atributo e classe para robustez: se JS não
+   atualizar aria-pressed, a classe visual ainda funcionará, e vice-versa. */
+.pill--ativo,
+.pill[aria-pressed="true"] {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.pill--ativo:hover,
+.pill[aria-pressed="true"]:hover {
+  background-color: var(--color-primary-dk);
+  border-color: var(--color-primary-dk);
+}
+
+/* =============================================================================
+   SEÇÃO DA GRADE DE RECEITAS
+============================================================================= */
+.receitas-secao {
+  background-color: var(--color-white);
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.receitas-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Grade responsiva: 4 colunas em telas largas, 2 em médias, 1 em mobile.
+   Usamos repeat(auto-fill, minmax(240px, 1fr)) para responsividade fluida
+   sem media queries adicionais — o grid se adapta automaticamente.
+   Em telas ≥1200px com max-width 1200px, 4 colunas cabem naturalmente. */
+.receitas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* =============================================================================
+   CARD DE RECEITA (<article>)
+   Cada card é um <article> porque contém conteúdo autocontido (uma receita
+   individual). O <article> é anunciado por leitores de tela como "artigo",
+   dando ao usuário contexto sobre o tipo de conteúdo que está explorando.
+============================================================================= */
+.receita-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.receita-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px); /* leve elevação no hover, consistente com outros cards do site */
+}
+
+/* Wrapper da imagem com position:relative para posicionar o botão
+   de favoritar absolutamente no canto superior direito. */
+.receita-card-img-wrapper {
+  position: relative;
+}
+
+.receita-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* =============================================================================
+   BOTÃO DE FAVORITAR
+   Reutiliza .btn-favoritar do home-logada.css (definido em css/home-logada.css).
+   O botão é posicionado absolutamente sobre a imagem do card.
+
+   Decisões de acessibilidade (detalhadas também no HTML):
+   - <button> real para ser focável por teclado e anunciado como "botão".
+   - aria-label com nome da receita para distinguir botões ao navegar por
+     botões com leitor de tela (todos seriam "Favoritar" sem o nome).
+   - aria-pressed para comunicar estado toggle sem depender de cor.
+============================================================================= */
+/* .btn-favoritar já está em home-logada.css — reutilizado aqui sem redefinição */
+
+/* =============================================================================
+   CORPO DO CARD
+============================================================================= */
+.receita-card-body {
+  padding: 1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1; /* garante que o corpo ocupe o espaço restante do card */
+}
+
+/* h3 dos títulos das receitas — hierarquia: h1 (página) → h2 (seção, .sr-only)
+   → h3 (cada receita).
+   Tamanho ligeiramente menor que o .card-receita-title da home logada para
+   acomodar cards menores no grid de 4 colunas. */
+.receita-card-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+/* .card-meta e .meta-item já definidos em home-logada.css — reutilizados */
+
+/* =============================================================================
+   BOTÃO "CARREGAR MAIS RECEITAS"
+   Centralizado abaixo da grade. Reutiliza .btn-secondary do styles.css para
+   manter consistência visual. Adicionamos border e padding específicos via
+   .btn-carregar-mais para corresponder ao estilo do mockup (outline maior).
+============================================================================= */
+.carregar-mais-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* Sobrescreve apenas o tamanho do botão secundário para esta versão "outline grande".
+   As cores e bordas vêm do .btn-secondary no styles.css. */
+.btn-carregar-mais {
+  padding: 0.75rem 2rem;
+  font-size: 0.95rem;
+  /* Nota: este botão não tem aria-controls nem aria-live associados porque
+     não há funcionalidade real de paginação nesta versão estática.
+     Quando JS for adicionado, o ideal é associar uma região aria-live="polite"
+     que anuncie o número de novas receitas carregadas. */
+}
+
+/* =============================================================================
+   RESPONSIVIDADE
+   Breakpoints adaptam a grade e a barra de filtros para telas menores.
+============================================================================= */
+@media (max-width: 768px) {
+  /* Hero de receitas com menos padding em mobile */
+  .receitas-hero {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  /* Filtros empilhados em mobile */
+  .busca-categoria-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .busca-receitas-wrapper,
+  .categoria-wrapper {
+    width: 100%;
+    min-width: unset;
+  }
+
+  /* Pills com scroll horizontal se não couberem */
+  .filtros-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem; /* espaço para scrollbar visível */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pill {
+    flex-shrink: 0; /* evita que os pills encolham ao não caber na linha */
+  }
+
+  /* Grid de 2 colunas em tablets/mobile landscape */
+  .receitas-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  /* Grid de 1 coluna em mobile portrait pequeno */
+  .receitas-grid {
+    grid-template-columns: 1fr;
+  }
+}
