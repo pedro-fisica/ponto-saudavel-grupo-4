@@ -1,0 +1,480 @@
+/* =============================================================================
+   PONTO SAUDÁVEL — Folha de estilos principal
+   HTML/CSS puro, sem frameworks.
+   Tipografia: família sans-serif do sistema (evita dependência externa).
+============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   Reset e variáveis
+   Variáveis CSS (custom properties) centralizam a paleta e facilitam
+   futuros ajustes de tema ou modo escuro.
+----------------------------------------------------------------------------- */
+:root {
+  --color-primary:    #1e7d34; /* verde principal — botões CTA e destaques */
+  --color-primary-dk: #155724; /* verde escuro — hover de botões */
+  --color-hero-bg:    #f5f4fb; /* lilás/cinza muito claro — fundo da hero */
+  --color-white:      #ffffff;
+  --color-text:       #1a1a2e; /* quase-preto para bom contraste */
+  --color-text-muted: #555566; /* cinza médio para textos secundários */
+  --color-border:     #e0dff0;
+  --color-footer-bg:  #1a1a2e; /* fundo escuro do rodapé */
+  --color-footer-txt: #c8c8d8; /* texto claro sobre fundo escuro do rodapé */
+  --font-family:      -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --radius-sm:  6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Reset básico — remove margens/paddings padrão dos navegadores */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background-color: var(--color-white);
+  line-height: 1.6;
+}
+
+/* -----------------------------------------------------------------------------
+   Classe utilitária .sr-only
+   Oculta visualmente o elemento, mas mantém-no acessível para leitores
+   de tela e tecnologias assistivas (padrão amplamente adotado).
+----------------------------------------------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   Foco visível (:focus-visible)
+   Exibe um contorno de foco apenas quando o usuário navega pelo teclado
+   (não aparece ao clicar com o mouse), melhorando a experiência de
+   navegação por teclado sem poluir a interface para usuários de mouse.
+----------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* =============================================================================
+   HEADER / NAVBAR
+============================================================================= */
+.site-header {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;   /* fica visível ao rolar — útil para navegação rápida */
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;   /* permite quebrar em telas pequenas */
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.logo img {
+  border-radius: var(--radius-sm);
+}
+
+/* Localização */
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+/* Campo de busca */
+.search-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  font-family: var(--font-family);
+  background-color: #f8f8fc;
+  color: var(--color-text);
+  /* O :focus-visible global já cuida do contorno de foco */
+}
+
+.search-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.875rem;
+  pointer-events: none; /* garante que cliques passem para o input */
+}
+
+/* Menu de navegação principal */
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-list a:hover {
+  color: var(--color-primary);
+  background-color: rgba(30, 125, 52, 0.07);
+}
+
+/* Botão "Entrar" */
+.btn-entrar {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-family: var(--font-family);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-entrar:hover {
+  background-color: var(--color-primary-dk);
+}
+
+/* =============================================================================
+   HERO SECTION
+============================================================================= */
+.hero {
+  background-color: var(--color-hero-bg);
+  padding: 4rem 1.5rem;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+/* Coluna de texto */
+.hero-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+/* Badge "🌿 Nutrição Inteligente" */
+.badge {
+  display: inline-block;
+  background-color: rgba(30, 125, 52, 0.12);
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
+}
+
+.hero-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem); /* tamanho fluido entre mobile e desktop */
+  line-height: 1.2;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  margin-bottom: 2rem;
+}
+
+/* Botões de ação da hero */
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Botão primário — maior destaque visual (cor sólida) */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dk);
+}
+
+/* Botão secundário — menor destaque (outline) */
+.btn-secondary {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Coluna da imagem */
+.hero-image-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 280px;
+  max-width: 560px;
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  display: block;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Badges flutuantes sobre a imagem */
+.float-badge {
+  position: absolute;
+  background-color: var(--color-white);
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  white-space: nowrap;
+}
+
+.float-badge--top {
+  top: 1rem;
+  right: -1rem;
+}
+
+.float-badge--bottom {
+  bottom: 1rem;
+  left: -1rem;
+}
+
+/* =============================================================================
+   SEÇÃO DE CARDS DE FUNCIONALIDADES
+============================================================================= */
+.features {
+  padding: 4rem 1.5rem;
+  background-color: var(--color-white);
+}
+
+.features-title {
+  text-align: center;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  color: var(--color-text);
+  margin-bottom: 2.5rem;
+}
+
+/* Grid de 3 cards — em telas pequenas, cai para 1 coluna */
+.cards-grid {
+  list-style: none;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px); /* leve elevação no hover */
+}
+
+/* Ícone circular do card */
+.card-icon {
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(30, 125, 52, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  flex: 1; /* empurra o link para o final do card */
+}
+
+.card-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* =============================================================================
+   FOOTER
+============================================================================= */
+.site-footer {
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-txt);
+  padding: 2rem 1.5rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-brand {
+  font-size: 0.875rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--color-footer-txt);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--color-white);
+}
+
+/* =============================================================================
+   RESPONSIVIDADE
+   Breakpoint em 768px — telas menores empilham os elementos.
+============================================================================= */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* Campo de busca ocupa a largura total em mobile */
+  .search-wrapper {
+    order: 3;
+    width: 100%;
+    min-width: unset;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+  }
+
+  /* Imagem aparece depois do texto em mobile */
+  .hero-image-wrapper {
+    max-width: 100%;
+  }
+
+  .float-badge--top {
+    right: 0.5rem;
+  }
+
+  .float-badge--bottom {
+    left: 0.5rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
