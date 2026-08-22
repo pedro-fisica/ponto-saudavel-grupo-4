@@ -1,14 +1,16 @@
 <!DOCTYPE html>
+<!-- Linguagem: português do Brasil -->
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <!-- Viewport garante layout responsivo em dispositivos móveis -->
+  <!-- Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ponto Saudável — Bem-vindo, Lucas!</title>
   <!-- Meta description: resumo da página para motores de busca e leitores de tela -->
   <meta name="description" content="Página inicial do Ponto Saudável para usuário autenticado, com recomendações personalizadas de alimentação." />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/home-logada.css" />
+  <script src="js/accessibility.js"></script>
 </head>
 <body>
 
@@ -70,6 +72,13 @@
           <li><a href="perfil.html">Meu Perfil</a></li>
         </ul>
       </nav>
+
+      <!-- Controles de acessibilidade para alterar o tamanho do texto -->
+      <div class="accessibility-font-controls" role="group" aria-label="Controles de tamanho de texto">
+        <button type="button" class="btn-font-size" id="btn-font-decrease" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A-</button>
+        <button type="button" class="btn-font-size" id="btn-font-reset" aria-label="Redefinir tamanho da fonte" title="Tamanho normal">A</button>
+        <button type="button" class="btn-font-size" id="btn-font-increase" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
+      </div>
 
       <!-- Avatar do usuário: substitui o botão "Entrar" no estado logado.
            Usa <a> pois leva para o perfil — ação de navegação, não ação.
