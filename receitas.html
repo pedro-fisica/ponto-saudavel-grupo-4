@@ -110,6 +110,11 @@
   ====================================================================== -->
   <main>
 
+    <!-- Região ARIA live para anunciar mensagens de feedback acessivelmente.
+         role="status" indica que é uma mensagem de status; aria-live="polite"
+         faz o leitor de tela anunciar quando o conteúdo mudar. -->
+    <div id="feedback-salvo" class="sr-only" role="status" aria-live="polite"></div>
+
     <!-- ==================================================================
          SEÇÃO DE TÍTULO DA PÁGINA
          Optamos por envolver título e subtítulo em uma <section> com

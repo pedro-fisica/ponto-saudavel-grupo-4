@@ -72,6 +72,12 @@
   </header>
 
   <main class="receita-main">
+    <!-- Região ARIA live para anunciar mensagens de feedback acessivelmente.
+         role="status" indica que é uma mensagem de status; aria-live="polite"
+         faz o leitor de tela anunciar quando o conteúdo mudar, sem interromper
+         a leitura atual. -->
+    <div id="feedback-salvo" class="sr-only" role="status" aria-live="polite"></div>
+
     <!-- Link de navegação real para voltar ao contexto da listagem de receitas. -->
     <a href="receitas.html" class="voltar-receitas">
       <span aria-hidden="true">←</span>

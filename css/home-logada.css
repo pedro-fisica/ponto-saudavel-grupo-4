@@ -167,6 +167,18 @@
   border-color: #c0392b;
 }
 
+/* Estado "favoritado" — coração preenchido com indicação visual */
+.btn-favoritar.favoritado {
+  background-color: #c0392b;
+  color: var(--color-white);
+  border-color: #c0392b;
+}
+
+.btn-favoritar.favoritado:hover {
+  background-color: #a03028;
+  border-color: #a03028;
+}
+
 .card-receita-body {
   padding: 1.25rem 1.5rem 1.5rem;
   display: flex;
