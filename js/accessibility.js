@@ -177,5 +177,63 @@
         }
       });
     });
+
+    // ========================================================================
+    // Funcionalidade de filtros de receitas (Sem Glúten, Sem Lactose)
+    // ========================================================================
+    var filtrosButtons = document.querySelectorAll('.filtro-receita');
+    var receitasCards = document.querySelectorAll('.receita-card[data-filtros]');
+
+    // Rastreia os filtros ativos
+    var filtrosAtivos = {};
+
+    filtrosButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var filtro = btn.getAttribute('data-filtro');
+        var estaPressionado = btn.getAttribute('aria-pressed') === 'true';
+
+        // Alterna o estado do filtro
+        if (!estaPressionado) {
+          btn.classList.add('pill--ativo');
+          btn.setAttribute('aria-pressed', 'true');
+          filtrosAtivos[filtro] = true;
+        } else {
+          btn.classList.remove('pill--ativo');
+          btn.setAttribute('aria-pressed', 'false');
+          delete filtrosAtivos[filtro];
+        }
+
+        // Aplica os filtros aos cards
+        atualizarVisibilidadeReceitas();
+      });
+    });
+
+    /**
+     * Atualiza a visibilidade dos cards de receita com base nos filtros selecionados.
+     * Se há filtros ativos, exibe apenas as receitas que atendem a TODOS os filtros.
+     * Se não há filtros ativos, exibe todas as receitas.
+     */
+    function atualizarVisibilidadeReceitas() {
+      var filtrosArray = Object.keys(filtrosAtivos);
+      var temFiltrosAtivos = filtrosArray.length > 0;
+
+      receitasCards.forEach(function (card) {
+        if (!temFiltrosAtivos) {
+          // Sem filtros ativos: exibe todas as receitas
+          card.style.display = '';
+        } else {
+          // Com filtros ativos: exibe apenas se atende a TODOS os filtros
+          var filtrosReceita = card.getAttribute('data-filtros')
+            .split(',')
+            .map(function (f) { return f.trim(); });
+
+          var atendeTodosFiltros = filtrosArray.every(function (filtro) {
+            return filtrosReceita.indexOf(filtro) !== -1;
+          });
+
+          card.style.display = atendeTodosFiltros ? '' : 'none';
+        }
+      });
+    }
   });
 })();

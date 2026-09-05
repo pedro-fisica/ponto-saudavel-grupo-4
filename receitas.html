@@ -238,7 +238,7 @@
           <button type="button" class="pill pill--ativo" aria-pressed="true">
             Selecionadas para você
           </button>
-          <button type="button" class="pill" aria-pressed="false">
+          <button type="button" class="pill filtro-receita" data-filtro="sem-gluten" aria-pressed="false">
             Sem Glúten
           </button>
           <button type="button" class="pill" aria-pressed="false">
@@ -249,6 +249,9 @@
           </button>
           <button type="button" class="pill" aria-pressed="false">
             Alta Proteína
+          </button>
+          <button type="button" class="pill filtro-receita" data-filtro="sem-lactose" aria-pressed="false">
+            Sem Lactose
           </button>
         </div>
 
@@ -286,7 +289,7 @@
                Pular níveis (ex: h1 → h3) quebraria a hierarquia e seria
                apontado por ferramentas como axe e Lighthouse como erro.
           ============================================================== -->
-          <article class="receita-card">
+          <article class="receita-card" data-filtros="sem-gluten,sem-lactose">
             <div class="receita-card-img-wrapper">
               <a
                 href="receita-bolo-banana.html"
@@ -366,7 +369,7 @@
           <!-- ==============================================================
                CARD 2: Torta de legumes integral
           ============================================================== -->
-          <article class="receita-card">
+          <article class="receita-card" data-filtros="sem-gluten">
             <div class="receita-card-img-wrapper">
               <img
                 src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&auto=format&fit=crop"
@@ -399,7 +402,7 @@
           <!-- ==============================================================
                CARD 3: Panqueca de aveia e frutas
           ============================================================== -->
-          <article class="receita-card">
+          <article class="receita-card" data-filtros="sem-lactose">
             <div class="receita-card-img-wrapper">
               <img
                 src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&auto=format&fit=crop"
@@ -432,7 +435,7 @@
           <!-- ==============================================================
                CARD 4: Salada colorida com grãos
           ============================================================== -->
-          <article class="receita-card">
+          <article class="receita-card" data-filtros="sem-gluten,sem-lactose">
             <div class="receita-card-img-wrapper">
               <img
                 src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&auto=format&fit=crop"
@@ -465,7 +468,7 @@
           <!-- ==============================================================
                CARD 5: Frango grelhado com quinoa
           ============================================================== -->
-          <article class="receita-card">
+          <article class="receita-card" data-filtros="sem-lactose">
             <div class="receita-card-img-wrapper">
               <img
                 src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&auto=format&fit=crop"
@@ -498,7 +501,7 @@
           <!-- ==============================================================
                CARD 6: Sopa de abóbora com gengibre
           ============================================================== -->
-          <article class="receita-card">
+          <article class="receita-card" data-filtros="sem-gluten">
             <div class="receita-card-img-wrapper">
               <img
                 src="https://images.unsplash.com/photo-1547592180-85f173990554?w=400&auto=format&fit=crop"
